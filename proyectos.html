@@ -1,0 +1,4612 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marco - Portafolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <style>
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .gradient-text {
+        background: linear-gradient(45deg, #3b82f6, #60a5fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+    </style>
+
+    <!-- Hero -->
+    <style>
+      /* Estilos base */
+      .glitch-text {
+        position: relative;
+        animation: glitch 3s infinite;
+      }
+
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -2px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+      }
+
+      /* Botón Neón */
+      .neon-button {
+        position: relative;
+        display: inline-block;
+        padding: 15px 30px;
+        color: #03e9f4;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        font-size: 16px;
+        overflow: hidden;
+        transition: 0.5s;
+        background: transparent;
+        border: none;
+      }
+
+      .neon-button:hover {
+        background: #03e9f4;
+        color: #050801;
+        box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+          0 0 200px #03e9f4;
+      }
+
+      .neon-button span {
+        position: absolute;
+        display: block;
+      }
+
+      .neon-button span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03e9f4);
+        animation: btn-anim1 1s linear infinite;
+      }
+
+      /* Botón Cyber */
+      .cyber-button {
+        position: relative;
+        padding: 15px 30px;
+        color: #17ffd9;
+        background: transparent;
+        border: 1px solid #17ffd9;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.5s;
+        overflow: hidden;
+      }
+
+      .cyber-button:hover {
+        background: #17ffd9;
+        color: #050801;
+        box-shadow: 0 0 20px #17ffd9;
+      }
+
+      /* Efecto lluvia matricial */
+      #matrix-rain {
+        font-family: monospace;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      /* Animaciones de fotogramas */
+      @keyframes glitch {
+        0% {
+          text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
+        }
+        25% {
+          text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9;
+        }
+        50% {
+          text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
+        }
+        75% {
+          text-shadow: -2px 0 #ff00c1, 2px 0 #00fff9;
+        }
+        100% {
+          text-shadow: 2px 0 #ff00c1, -2px 0 #00fff9;
+        }
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink {
+        50% {
+          border-color: transparent;
+        }
+      }
+    </style>
+
+    <style>
+      /* Hero NAV */
+      .heroo-nav {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .heroo-nav.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link {
+        position: relative;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background: linear-gradient(90deg, #3b82f6, #60a5fa);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .hero-title {
+        background: linear-gradient(-45deg, #3b82f6, #60a5fa, #93c5fd, #3b82f6);
+        background-size: 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 10s ease infinite;
+      }
+
+      .hero-subtitle {
+        overflow: hidden;
+        border-right: 2px solid #3b82f6;
+        white-space: nowrap;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .particle {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+      }
+
+      .tech-stack-icon {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .tech-stack-icon:hover {
+        transform: translateY(-5px) scale(1.1);
+        filter: brightness(1.2);
+      }
+
+      .hero-cta {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .hero-cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: all 0.5s ease;
+      }
+
+      .hero-cta:hover::before {
+        left: 100%;
+      }
+    </style>
+
+    <!-- NEW -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .project-card {
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+
+      .publication-card {
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .publication-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .publication-card:hover::before {
+        opacity: 0.1;
+      }
+
+      .certification-card {
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        transform-style: preserve-3d;
+      }
+
+      .certification-card:hover {
+        transform: rotateY(10deg);
+        box-shadow: -20px 20px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .badge {
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        transform: scale(1.1);
+      }
+    </style>
+    <style>
+      .project-card {
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+        border-radius: 1rem;
+      }
+
+      .project-card:hover::before {
+        opacity: 0.02;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+
+      .tech-badge {
+        transition: all 0.3s ease;
+      }
+
+      .tech-badge:hover {
+        transform: scale(1.1);
+      }
+
+      .project-link {
+        transition: all 0.3s ease;
+      }
+
+      .project-link:hover {
+        transform: translateX(5px);
+      }
+
+      .expand-button {
+        transition: all 0.3s ease;
+      }
+
+      .expand-button:hover {
+        background-color: #1e40af;
+        transform: scale(1.05);
+      }
+
+      .project-content {
+        transition: max-height 0.6s ease;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Header -->
+    <!-- <header class="fixed w-full bg-white/80 backdrop-blur-md shadow-sm z-50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a href="#" class="text-2xl font-bold gradient-text">Marco</a>
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="#inicio"
+              class="text-gray-600 hover:text-blue-500 transition"
+              >Inicio</a
+            >
+            <a
+              href="#sobre-mi"
+              class="text-gray-600 hover:text-blue-500 transition"
+              >Sobre mí</a
+            >
+            <a
+              href="#logros"
+              class="text-gray-600 hover:text-blue-500 transition"
+              >Logros</a
+            >
+            <a
+              href="#areas"
+              class="text-gray-600 hover:text-blue-500 transition"
+              >Áreas</a
+            >
+            <a
+              href="#contacto"
+              class="text-gray-600 hover:text-blue-500 transition"
+              >Contacto</a
+            >
+          </div>
+          <button id="menu-btn" class="md:hidden text-gray-600">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header> -->
+
+    <!-- Header/Nav -->
+    <nav class="heroo-nav fixed w-full z-50 px-6 py-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-blue-500"
+          >Portafolio Marco Mayta</a
+        >
+
+        <div class="hidden md:flex space-x-8">
+          <a href="#inicio" class="nav-link text-gray-200 hover:text-blue-400"
+            >Inicio</a
+          >
+          <a
+            href="#proyectos"
+            class="nav-link text-gray-200 hover:text-blue-400"
+            >Proyectos</a
+          >
+          <a
+            href="#publicaciones"
+            class="nav-link text-gray-200 hover:text-blue-400"
+            >Publicaciones</a
+          >
+          <a
+            href="#certificados"
+            class="nav-link text-gray-200 hover:text-blue-400"
+            >Certificados</a
+          >
+          <a href="#contacto" class="nav-link text-gray-200 hover:text-blue-400"
+            >Contacto</a
+          >
+        </div>
+
+        <button class="md:hidden text-white">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="inicio"
+      class="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-gray-900 to-blue-900"
+    >
+      <!-- Capa de fondo con código cayendo -->
+      <div id="matrix-rain" class="absolute inset-0 opacity-20"></div>
+
+      <!-- Tetris Background -->
+      <div
+        id="tetris-container"
+        class="absolute right-0 top-0 w-1/4 h-screen opacity-20"
+      ></div>
+
+      <!-- Símbolos estadísticos flotantes -->
+      <div
+        id="stats-symbols"
+        class="absolute inset-0 pointer-events-none"
+      ></div>
+
+      <!-- Contenido principal -->
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col md:flex-row items-center">
+          <!-- Columna izquierda -->
+          <div class="md:w-1/2 text-white">
+            <h1
+              class="text-6xl font-bold mb-6 glitch-text"
+              data-text="Marco Mayta"
+            >
+              Marco Mayta
+            </h1>
+
+            <div class="typewriter-container mb-8">
+              <h2 class="text-3xl typing-text"></h2>
+            </div>
+
+            <p class="text-xl mb-10 text-blue-200 leading-relaxed fade-in">
+              <!-- Transformando datos en soluciones inteligentes con -->
+              Liderando el futuro con datos, ciencia e inteligencia artificial.
+              <!-- <span class="highlight-text">innovación</span> y -->
+              <!-- <span class="highlight-text">precisión</span>. -->
+            </p>
+
+            <!-- Botones con efectos -->
+            <div class="flex space-x-6">
+              <a href="#areas" class="neon-button">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Explorar Proyectos
+              </a>
+              <a href="#" class="cyber-button">
+                <span></span>
+                Descargar CV
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha con gráficos -->
+          <div class="md:w-1/2 mt-10 md:mt-0">
+            <div class="relative">
+              <!-- Gráfico circular animado -->
+              <svg
+                id="stats-chart"
+                class="w-full max-w-lg mx-auto"
+                viewBox="0 0 400 400"
+              ></svg>
+            </div>
+          </div>
+        </div>
+        <!-- Social Links -->
+        <div class="mt-12 flex space-x-8">
+          <!-- GitHub -->
+          <a
+            href="https://github.com/Maqui2404"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/marco-mayta-835781170/"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+
+          <!-- Kaggle -->
+          <a
+            href="https://kaggle.com/Marfi1"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg
+              class="w-8 h-8"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <text
+                x="8.5"
+                y="16"
+                font-size="12"
+                fill="currentColor"
+                font-family="Arial, sans-serif"
+                font-weight="bold"
+              >
+                k
+              </text>
+            </svg>
+          </a>
+
+          <!-- ORCID -->
+          <a
+            href="https://orcid.org/0009-0009-6019-2925"
+            target="_blank"
+            class="text-gray-600 hover:text-[#A6CE39] transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#A6CE39" />
+              <text
+                x="7.5"
+                y="16"
+                font-size="10"
+                fill="white"
+                font-family="Arial, sans-serif"
+                font-weight="bold"
+              >
+                iD
+              </text>
+            </svg>
+          </a>
+
+          <!-- Deepnote -->
+          <!-- <a
+            href="https://deepnote.com/u/tu_usuario"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#4A90E2" />
+              <path d="M8 12h4l4-4v8l-4-4H8z" fill="white" />
+            </svg>
+          </a> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Proyectos Section -->
+    <section
+      class="py-24 bg-gradient-to-b from-gray-50 to-white"
+      id="proyectos"
+    >
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">
+          PROYECTOS
+        </h2>
+        <p
+          class="text-gray-600 text-center mb-16 max-w-2xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Explorando la innovación a través de soluciones tecnológicas avanzadas
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Project Card 1 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    version="1.0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="593.000000pt"
+                    height="625.000000pt"
+                    viewBox="0 0 593.000000 625.000000"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <g
+                      transform="translate(0.000000,625.000000) scale(0.100000,-0.100000)"
+                      fill="#000000"
+                      stroke="none"
+                    >
+                      <path
+                        d="M2760 6109 c-168 -14 -372 -58 -565 -120 -33 -11 -68 -24 -77 -29
+               -10 -6 -24 -10 -32 -10 -28 0 -41 -32 -42 -109 0 -42 1 -82 4 -88 3 -10 45
+               -13 163 -13 l159 0 0 -30 0 -30 -159 0 c-184 0 -168 12 -167 -125 l1 -90 570
+               -5 c560 -5 571 -5 629 -27 149 -56 276 -186 327 -334 27 -79 37 -228 19 -308
+               -33 -156 -160 -317 -302 -385 -118 -56 -148 -57 -1147 -55 l-896 1 -5 -63 c-5
+               -61 -6 -64 -32 -67 -18 -2 -29 2 -30 10 -3 26 -5 54 -7 91 l-1 37 -40 -6 c-24
+               -4 -52 -2 -70 6 l-30 12 0 145 c0 80 5 153 10 164 9 15 22 19 70 19 33 0 61 3
+               61 8 1 4 2 50 3 102 l1 95 30 0 30 0 3 -102 3 -103 823 0 824 0 53 28 c44 23
+               57 36 73 74 35 84 -2 162 -91 192 -41 14 -156 16 -1015 16 -939 0 -969 -1
+               -987 -19 -37 -37 -158 -257 -200 -366 -5 -11 -13 -31 -19 -45 -18 -43 -59
+               -163 -71 -210 -7 -25 -16 -58 -21 -75 -8 -32 -18 -86 -46 -250 -24 -139 -24
+               -499 0 -645 37 -236 93 -429 172 -599 24 -51 44 -97 44 -101 0 -4 6 -13 13
+               -19 11 -8 30 0 85 39 39 28 74 50 76 50 3 0 25 14 49 31 l45 31 -5 62 c-5 59
+               -4 64 22 84 52 41 124 36 164 -12 18 -21 16 -99 -3 -128 -18 -28 -14 -38 64
+               -152 44 -64 46 -65 89 -66 37 0 53 8 118 56 60 46 77 54 88 44 30 -25 17 -55
+               -42 -96 -58 -40 -58 -40 -55 -87 4 -56 -17 -101 -58 -122 -34 -18 -70 -19
+               -103 -4 -21 9 -36 2 -133 -62 -60 -40 -111 -74 -113 -75 -18 -14 240 -275 349
+               -352 25 -18 63 -46 84 -62 l39 -30 406 2 406 3 3 -32 3 -32 -163 -3 -163 -3
+               -1 -93 c0 -52 4 -99 10 -108 11 -14 128 -60 231 -90 28 -9 64 -19 80 -24 136
+               -40 429 -80 594 -80 293 0 668 75 919 186 l52 23 0 95 0 95 -152 3 c-140 3
+               -153 5 -156 22 -2 10 1 23 6 28 6 6 153 10 376 11 l367 0 69 54 70 54 0 127
+               c1 112 16 230 33 259 3 5 -3 22 -14 39 -22 33 -25 110 -6 134 21 26 63 48 96
+               52 29 3 39 12 87 92 l53 88 3 122 3 121 28 3 27 3 0 -141 0 -141 -52 -82 c-52
+               -81 -53 -83 -53 -160 0 -75 -1 -80 -29 -102 -16 -13 -41 -26 -56 -29 -23 -4
+               -28 -12 -34 -48 -4 -24 -11 -65 -16 -93 -14 -80 -12 -185 3 -185 6 0 66 55
+               132 123 182 185 326 389 430 605 25 51 45 95 45 98 0 4 6 20 14 37 7 18 18 44
+               24 58 17 43 79 260 92 324 6 33 14 71 17 85 14 71 33 299 32 400 0 149 -27
+               390 -58 525 -21 88 -65 241 -81 280 -4 11 -25 62 -45 112 -21 51 -43 97 -50
+               103 -8 7 -39 -10 -106 -55 l-94 -64 -2 -53 c-1 -43 -6 -57 -28 -75 -14 -13
+               -32 -23 -40 -23 -21 0 -34 -32 -42 -100 -6 -66 -12 -75 -44 -65 -21 7 -21 11
+               -15 88 6 74 5 82 -15 104 -27 28 -32 105 -10 146 13 24 10 34 -43 144 -31 65
+               -60 125 -65 133 -4 8 -24 16 -44 18 -70 6 -107 108 -63 174 16 25 16 31 2 88
+               -11 42 -16 107 -16 204 l0 143 -47 39 c-108 90 -92 85 -285 82 -95 -2 -176 -7
+               -179 -11 -3 -5 -4 -53 -2 -107 l5 -99 -27 -7 c-14 -4 -30 -3 -35 2 -5 5 -11
+               56 -12 114 l-3 105 -140 0 c-168 1 -165 0 -165 23 0 37 19 42 167 42 l143 0 0
+               90 c0 78 -3 91 -17 96 -10 3 -27 10 -38 14 -11 5 -60 23 -110 40 -326 112
+               -675 157 -1005 129z m-137 -310 c34 -35 37 -43 37 -94 0 -51 -3 -58 -40 -95
+               -36 -36 -45 -40 -91 -40 -46 0 -55 4 -90 39 -37 37 -39 42 -39 101 0 59 2 65
+               35 96 59 55 130 53 188 -7z m920 19 c109 -76 55 -248 -78 -248 -82 0 -135 57
+               -135 145 0 39 5 50 39 84 54 54 114 61 174 19z m-235 -102 c2 -10 0 -22 -5
+               -26 -4 -5 -143 -10 -308 -12 l-300 -3 -3 33 -3 32 308 -2 c291 -3 308 -4 311
+               -22z m898 -377 c54 -37 81 -85 94 -165 7 -40 10 -253 10 -538 0 -259 -1 -479
+               0 -488 0 -16 12 -18 110 -18 90 0 118 4 149 19 37 19 94 76 103 102 3 9 50 12
+               198 12 177 0 194 -2 207 -19 16 -22 11 -70 -19 -158 -50 -150 -195 -274 -348
+               -296 -36 -5 -140 -10 -232 -10 l-168 0 0 -104 0 -104 198 -4 c173 -3 204 -6
+               256 -26 184 -68 316 -255 316 -445 0 -77 -1 -77 -215 -77 -168 0 -186 2 -191
+               18 -46 144 -99 183 -256 190 -80 4 -99 2 -103 -10 -3 -8 -7 -224 -8 -479 -2
+               -348 -6 -474 -15 -502 -18 -53 -92 -124 -145 -138 -93 -25 -189 17 -237 101
+               l-25 45 -5 490 -5 490 -880 0 -880 0 -3 -286 c-2 -307 0 -328 50 -382 56 -60
+               69 -62 363 -62 297 0 299 0 360 65 l30 31 7 192 c7 177 9 193 28 209 51 42
+               200 26 310 -33 105 -56 199 -174 239 -300 16 -52 14 -215 -4 -267 -25 -72 -55
+               -124 -102 -180 -46 -53 -150 -132 -176 -132 -7 0 -17 -3 -21 -7 -24 -25 -142
+               -32 -531 -32 -407 -1 -486 4 -592 37 -130 41 -292 182 -352 307 -61 126 -61
+               124 -61 662 0 434 2 493 16 507 14 14 128 16 1110 16 l1095 0 -3 103 -3 102
+               -1094 3 c-788 1 -1098 5 -1108 13 -18 16 -19 314 0 326 6 4 505 10 1107 13
+               l1095 5 5 540 5 540 24 48 c55 111 194 146 297 76z m-2166 -509 l0 -80 -30 0
+               -30 0 0 80 0 80 30 0 30 0 0 -80z m-753 -651 c48 -18 100 -59 130 -102 25 -38
+               28 -50 28 -132 0 -98 0 -98 -68 -166 -56 -58 -92 -73 -167 -73 -84 0 -129 16
+               -180 65 -79 77 -101 180 -56 274 44 95 119 144 223 145 34 0 74 -5 90 -11z
+               m44 -532 c49 -22 97 -74 109 -119 6 -21 9 -93 8 -160 l-3 -123 -112 -3 c-104
+               -2 -133 4 -103 23 6 4 10 70 10 165 0 145 -2 160 -19 169 -13 7 -23 6 -35 -2
+               -16 -12 -17 -31 -14 -185 l3 -173 -110 3 -110 3 -3 131 c-2 101 1 139 13 168
+               24 57 80 102 150 120 37 9 180 -2 216 -17z m107 -473 c4 -27 -13 -31 -107 -28
+               -93 4 -103 -3 -100 -69 2 -38 -1 -53 -13 -61 -28 -17 -47 10 -50 72 l-3 57
+               -85 2 c-47 1 -91 2 -97 2 -14 1 -18 33 -6 45 4 3 108 5 232 4 222 -3 226 -3
+               229 -24z m1149 -1251 c73 -34 97 -135 47 -200 -28 -36 -71 -63 -104 -63 -32 0
+               -95 36 -113 64 -20 30 -23 116 -4 149 34 60 108 82 174 50z m961 -16 c76 -70
+               68 -168 -18 -222 -48 -30 -84 -32 -128 -5 -95 58 -95 203 1 246 43 19 114 10
+               145 -19z m-243 -103 l0 -29 -307 -3 -308 -2 0 28 c0 16 2 31 4 33 2 2 141 4
+               308 3 l303 -1 0 -29z"
+                      />
+                      <path
+                        d="M1177 4124 c-4 -4 -7 -85 -7 -180 0 -162 1 -172 20 -177 10 -3 26 0
+               35 7 13 9 15 36 13 181 l-3 170 -25 3 c-14 2 -29 0 -33 -4z"
+                      />
+                      <path
+                        d="M1950 5890 c0 -5 -6 -10 -12 -10 -26 0 -238 -117 -238 -131 0 -6 56
+               -8 138 -7 l137 3 3 78 c2 64 0 77 -13 77 -8 0 -15 -4 -15 -10z"
+                      />
+                      <path
+                        d="M3998 5818 c-3 -35 -3 -66 -1 -70 2 -5 60 -8 128 -8 137 0 149 8 72
+               46 -23 12 -75 37 -114 58 -40 20 -74 36 -77 36 -2 0 -6 -28 -8 -62z"
+                      />
+                      <path
+                        d="M1581 5669 c-44 -17 -250 -175 -259 -200 -2 -5 133 -9 327 -9 l331 0
+               0 110 0 109 -188 -1 c-104 -1 -199 -5 -211 -9z"
+                      />
+                      <path
+                        d="M4573 5474 c-8 -20 4 -185 19 -250 10 -48 14 -53 49 -64 66 -22 96
+               -97 64 -163 l-17 -35 62 -126 c66 -133 71 -140 111 -149 21 -6 46 6 130 63
+               113 77 114 79 73 142 -13 21 -24 40 -24 43 0 2 -30 51 -66 107 -61 94 -89 133
+               -164 223 -45 54 -214 225 -222 225 -5 0 -11 -7 -15 -16z"
+                      />
+                      <path
+                        d="M1085 2777 c-11 -7 -22 -14 -25 -17 -3 -3 -13 -9 -22 -15 -79 -47
+               -198 -133 -198 -143 0 -33 172 -272 197 -272 12 0 182 110 216 140 5 4 10 18
+               11 31 2 13 6 38 10 55 6 27 0 41 -50 110 -31 44 -61 89 -67 102 -11 24 -40 28
+               -72 9z"
+                      />
+                      <path
+                        d="M1677 1764 c-12 -12 44 -47 227 -143 32 -17 62 -28 67 -25 5 3 9 43
+               9 90 l0 84 -148 0 c-82 0 -152 -3 -155 -6z"
+                      />
+                      <path
+                        d="M4000 1763 c-1 -16 -2 -138 -1 -146 1 -10 206 96 232 119 8 8 21 14
+               27 14 7 0 12 5 12 10 0 12 -270 14 -270 3z"
+                      />
+                      <path
+                        d="M4587 1037 c-21 -12 -47 -38 -57 -57 -23 -44 -70 -147 -70 -154 0 -7
+               -57 -135 -70 -158 -6 -10 -10 -22 -10 -27 0 -5 -13 -38 -29 -73 -16 -35 -44
+               -99 -61 -143 -18 -44 -37 -84 -41 -89 -5 -6 -9 -25 -9 -42 0 -62 81 -94 149
+               -59 18 9 37 34 55 72 14 32 30 65 35 73 7 12 37 16 160 18 l151 3 10 -26 c45
+               -118 79 -155 142 -155 50 0 98 32 98 65 0 19 -36 113 -97 255 -8 19 -18 44
+               -23 55 -4 11 -15 38 -25 60 -9 22 -28 68 -41 103 -13 34 -30 77 -37 95 -8 17
+               -23 52 -33 77 -28 69 -44 89 -85 111 -49 24 -65 24 -112 -4z m105 -367 c21
+               -51 38 -95 38 -97 0 -2 -40 -3 -90 -3 -89 0 -106 7 -82 36 8 8 38 77 62 139 6
+               15 16 25 22 23 7 -3 29 -46 50 -98z"
+                      />
+                      <path
+                        d="M5096 1029 l-26 -31 0 -368 0 -369 26 -20 c50 -39 124 -22 153 36 7
+               15 11 131 11 363 0 285 -2 346 -15 370 -31 60 -107 70 -149 19z"
+                      />
+                      <path
+                        d="M760 1033 c-60 -6 -88 -22 -104 -62 -12 -32 -14 -89 -11 -347 2 -179
+               8 -321 14 -337 6 -15 25 -36 43 -47 30 -18 51 -20 258 -20 209 0 227 2 259 21
+               l33 20 44 -20 c52 -25 98 -27 149 -5 35 14 40 14 71 -2 33 -18 35 -18 64 0 29
+               16 34 17 77 2 62 -21 98 -20 149 4 51 25 72 48 89 96 15 44 3 104 -26 130 -10
+               9 -56 35 -101 58 -49 24 -83 47 -83 56 0 21 61 25 90 6 33 -22 72 -20 97 4 12
+               11 24 20 27 20 6 0 25 -34 98 -173 43 -82 45 -89 32 -115 -34 -67 -60 -102
+               -78 -102 -34 0 -71 -39 -71 -73 0 -38 6 -47 44 -71 25 -16 34 -17 67 -7 72 22
+               84 40 315 492 50 97 54 131 22 153 -51 36 -105 12 -132 -58 -19 -49 -75 -156
+               -82 -156 -3 0 -14 21 -25 47 -65 153 -87 183 -133 183 -19 0 -45 -9 -60 -21
+               l-27 -21 -49 21 c-82 35 -149 26 -233 -32 -15 -10 -20 -9 -30 4 -20 26 -85 49
+               -139 49 -76 0 -168 -50 -168 -91 0 -10 11 -31 24 -46 22 -25 27 -27 46 -15 12
+               7 43 16 69 19 40 5 51 2 76 -19 20 -18 26 -30 21 -43 -6 -16 -15 -17 -81 -12
+               -44 4 -86 2 -102 -4 -37 -14 -83 -58 -83 -80 0 -33 -24 -38 -196 -39 -93 0
+               -177 -1 -186 0 -15 0 -18 10 -18 59 0 37 5 63 12 67 7 5 67 7 134 5 134 -3
+               196 9 219 42 21 30 19 80 -4 108 -18 23 -26 24 -188 29 l-168 5 0 65 0 65 196
+               5 c226 6 239 10 239 82 0 98 -29 110 -273 106 -106 -1 -208 -4 -227 -5z m888
+               -593 c9 -6 38 -19 65 -30 49 -20 64 -51 31 -64 -63 -24 -134 13 -134 70 0 35
+               8 41 38 24z m-188 -15 c71 -37 -1 -123 -78 -94 -14 5 -31 17 -38 27 -45 59 39
+               107 116 67z"
+                      />
+                      <path
+                        d="M2313 1025 c-17 -7 -36 -22 -42 -34 -17 -31 -12 -84 10 -111 19 -23
+               28 -25 117 -27 54 -1 100 -2 105 -3 4 0 7 -130 7 -289 l0 -288 26 -27 c33 -32
+               84 -35 124 -6 l28 20 3 284 c3 201 8 289 16 297 7 7 42 11 95 10 103 -2 133 8
+               155 54 16 33 16 37 0 70 -30 63 -46 66 -345 65 -198 -1 -275 -5 -299 -15z"
+                      />
+                      <path
+                        d="M3602 922 c-40 -37 -48 -71 -27 -111 31 -62 120 -66 155 -8 32 52 21
+               100 -30 130 -40 24 -63 21 -98 -11z"
+                      />
+                      <path
+                        d="M2869 711 c-23 -19 -24 -24 -27 -202 -2 -100 -1 -197 3 -216 12 -63
+               73 -92 120 -57 18 13 21 30 25 152 4 93 10 144 20 159 16 25 51 43 82 43 12 0
+               34 11 48 25 l26 25 18 -35 c21 -38 40 -43 70 -20 44 33 150 5 144 -38 -3 -21
+               -8 -22 -95 -22 -87 0 -93 -1 -130 -31 -86 -70 -62 -215 44 -259 50 -21 112
+               -19 152 6 l33 20 22 -20 c28 -26 68 -27 89 -3 15 16 17 45 17 191 0 158 -2
+               177 -21 211 -29 52 -100 90 -168 90 -51 0 -130 -24 -143 -44 -4 -7 -18 0 -36
+               17 -35 34 -79 35 -133 5 l-39 -22 -20 22 c-26 27 -70 28 -101 3z m506 -287
+               c30 -19 33 -61 8 -80 -10 -7 -37 -14 -60 -14 -33 0 -46 5 -62 26 -26 34 -26
+               41 2 65 27 23 80 24 112 3z"
+                      />
+                      <path
+                        d="M3602 707 c-21 -22 -22 -31 -22 -240 0 -212 0 -216 22 -231 33 -23
+               81 -20 106 7 21 22 22 31 22 234 l0 212 -26 20 c-35 28 -75 27 -102 -2z"
+                      />
+                      <path
+                        d="M3792 707 c-21 -22 -22 -32 -22 -229 0 -193 1 -207 21 -232 24 -30
+               71 -35 104 -10 18 13 21 30 25 163 6 172 14 191 81 191 64 0 69 -12 69 -176 0
+               -141 1 -146 25 -169 31 -32 74 -33 103 -2 21 22 22 32 22 193 -1 173 -3 184
+               -45 235 -50 60 -146 77 -218 39 -20 -11 -39 -20 -40 -20 -2 0 -14 9 -27 20
+               -31 27 -71 25 -98 -3z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Easy Train AI</h3>
+                  <p class="text-gray-500">Plataforma de Entrenamiento IA</p>
+                </div>
+              </div>
+              <!-- Image Carousel -->
+              <div class="mb-6 relative">
+                <!-- Carousel container -->
+                <div class="overflow-hidden rounded-xl h-64">
+                  <!-- Carousel track -->
+                  <div
+                    class="flex transition-transform duration-500 ease-in-out"
+                  >
+                    <!-- Image slides - Ajusta los src según tus imágenes -->
+                    <div class="w-full flex-shrink-0">
+                      <img
+                        src="/redneuronal/Imagen1.png"
+                        alt="Chi Researcher Screenshot 1"
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                    <div class="w-full flex-shrink-0">
+                      <img
+                        src="/redneuronal/Imagen2.png"
+                        alt="Chi Researcher Screenshot 2"
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                    <div class="w-full flex-shrink-0">
+                      <img
+                        src="/redneuronal/Imagen3.png"
+                        alt="Chi Researcher Screenshot 3"
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                    <div class="w-full flex-shrink-0">
+                      <img
+                        src="/redneuronal/Imagen4.png"
+                        alt="Chi Researcher Screenshot 3"
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                    <div class="w-full flex-shrink-0">
+                      <img
+                        src="/redneuronal/Imagen5.jpg"
+                        alt="Chi Researcher Screenshot 3"
+                        class="w-full h-64 object-cover"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Navigation buttons -->
+                <button
+                  class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg"
+                  onclick="moveCarousel(-1)"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                </button>
+                <button
+                  class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg"
+                  onclick="moveCarousel(1)"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Dots indicator -->
+                <div
+                  class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
+                >
+                  <button
+                    class="w-2 h-2 rounded-full bg-white/60 hover:bg-white"
+                    onclick="goToSlide(0)"
+                  ></button>
+                  <button
+                    class="w-2 h-2 rounded-full bg-white/60 hover:bg-white"
+                    onclick="goToSlide(1)"
+                  ></button>
+                  <button
+                    class="w-2 h-2 rounded-full bg-white/60 hover:bg-white"
+                    onclick="goToSlide(2)"
+                  ></button>
+                  <button
+                    class="w-2 h-2 rounded-full bg-white/60 hover:bg-white"
+                    onclick="goToSlide(3)"
+                  ></button>
+                  <button
+                    class="w-2 h-2 rounded-full bg-white/60 hover:bg-white"
+                    onclick="goToSlide(4)"
+                  ></button>
+                </div>
+              </div>
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Easy Train AI es una aplicación web interactiva diseñada para
+                  simplificar el entrenamiento de modelos de redes neuronales,
+                  utilizando cualquier tipo de datos. Su interfaz intuitiva
+                  permite cargar conjuntos de datos en formatos comunes como
+                  CSV, TXT y Excel, configurar arquitecturas personalizadas de
+                  redes neuronales, entrenar modelos y realizar predicciones en
+                  tiempo real. La aplicación está dirigida a estudiantes,
+                  profesionales e investigadores, democratizando el acceso al
+                  machine learning sin necesidad de conocimientos avanzados en
+                  programación.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Simplificar el desarrollo y evaluación de redes neuronales.
+                  </li>
+                  <li>Democratizar el acceso a la inteligencia artificial.</li>
+                  <li>Proporcionar una herramienta flexible y escalable.</li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >Streamlit</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >TensorFlow y Keras</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >Pandas y NumPy</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >Matplotlib</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >Joblib</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">2 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    GitHub Repository
+                  </a>
+                  <a
+                    href="https://easytrainai-dhbkzau3hrkjxnfvval7sh.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Chi Researcher</h3>
+                  <p class="text-gray-500">
+                    Herramienta Interactiva para Pruebas de Chi-Cuadrado
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Chi-Researcher es una aplicación web diseñada para realizar
+                  análisis estadísticos de Chi-Cuadrado de manera sencilla y
+                  accesible. La herramienta permite cargar datos en formatos
+                  como CSV o Excel, seleccionar variables categóricas y realizar
+                  pruebas estadísticas como independencia, bondad de ajuste y
+                  homogeneidad. La aplicación genera gráficos interactivos y
+                  permite descargar informes en formato TXT con resultados
+                  detallados y sus interpretaciones. Está dirigida a
+                  estudiantes, investigadores y profesionales que buscan
+                  realizar análisis estadísticos con facilidad y precisión.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Simplificar la realización de pruebas de Chi-Cuadrado.
+                  </li>
+                  <li>
+                    Facilitar el análisis estadístico a través de una interfaz
+                    intuitiva.
+                  </li>
+                  <li>
+                    Generar gráficos y reportes detallados para apoyar la
+                    interpretación de resultados.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >Streamlit</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >Pandas y NumPy</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >SciPy</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >Plotly Express</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">2 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    GitHub Repository
+                  </a>
+                  <a
+                    href="https://chiresearcher-j8vhwqekdg5bcsqcj5q5vj.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    version="1.0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="536.000000pt"
+                    height="536.000000pt"
+                    viewBox="0 0 536.000000 536.000000"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <g
+                      transform="translate(0.000000,536.000000) scale(0.100000,-0.100000)"
+                      fill="#000000"
+                      stroke="none"
+                    >
+                      <path
+                        d="M3617 4733 c-4 -3 -7 -14 -7 -24 0 -10 -12 -21 -30 -27 -36 -13 -31
+               -42 6 -42 20 0 24 -5 24 -31 0 -24 4 -30 18 -27 10 2 18 14 20 31 2 18 9 27
+               21 27 9 0 22 5 29 12 15 15 -3 38 -29 38 -14 0 -19 7 -19 25 0 24 -18 34 -33
+               18z"
+                      />
+                      <path
+                        d="M2495 4619 c-206 -72 -573 -199 -597 -206 -10 -3 -18 -8 -18 -12 0
+               -4 136 -58 303 -121 166 -62 345 -131 397 -152 52 -21 103 -38 115 -38 18 0
+               382 134 393 144 4 5 -19 11 -153 41 -217 48 -220 49 -220 76 0 22 -5 25 -35
+               21 -6 -1 -15 -13 -20 -27 -6 -15 -17 -25 -30 -25 -46 0 -37 70 13 101 44 28
+               91 19 136 -25 27 -26 50 -37 96 -46 33 -6 74 -15 90 -20 17 -4 74 -18 128 -30
+               l98 -22 66 22 c57 19 71 21 106 10 26 -8 36 -15 30 -21 -6 -6 -68 -33 -139
+               -60 -274 -107 -519 -199 -545 -204 -17 -4 -46 1 -76 14 -26 11 -95 38 -153 60
+               -58 22 -181 70 -275 107 -93 36 -199 77 -235 91 -36 14 -97 38 -137 54 -70 29
+               -97 30 -106 5 -11 -27 18 -42 200 -112 l188 -71 5 -48 c3 -28 11 -51 20 -56 8
+               -4 76 -29 150 -54 74 -26 190 -67 257 -91 68 -24 134 -44 147 -44 13 0 60 13
+               103 29 78 29 166 60 338 121 122 43 120 41 123 89 2 29 9 45 25 55 18 12 161
+               66 174 66 2 0 3 -49 3 -110 0 -110 0 -110 24 -110 31 0 34 12 32 133 -3 110
+               -2 112 77 141 47 18 68 40 60 64 -7 19 -43 15 -114 -13 -54 -22 -68 -24 -92
+               -14 -34 14 -31 29 11 43 64 22 57 31 -55 69 -60 20 -241 81 -403 136 -162 56
+               -304 101 -315 100 -11 0 -96 -27 -190 -60z"
+                      />
+                      <path
+                        d="M1070 4653 c-31 -10 -60 -27 -60 -34 0 -5 55 -10 123 -11 l122 -3 3
+               -230 c1 -126 0 -240 -3 -252 l-5 -23 -283 0 c-207 0 -286 3 -295 12 -7 7 -12
+               36 -12 64 0 29 -3 55 -7 57 -5 3 -20 -13 -35 -34 -15 -22 -23 -39 -18 -39 6 0
+               10 -20 10 -44 0 -25 6 -48 14 -55 9 -8 109 -11 347 -9 l334 3 3 289 c2 205 -1
+               293 -9 302 -8 10 -38 14 -113 13 -55 0 -108 -3 -116 -6z"
+                      />
+                      <path
+                        d="M1609 4638 c-1 -7 -2 -17 -4 -23 -1 -5 -3 -15 -3 -22 -1 -6 -14 -13
+               -29 -15 -17 -2 -28 -9 -28 -18 0 -9 11 -16 28 -18 20 -3 27 -9 27 -25 0 -31
+               15 -51 34 -44 10 4 16 18 16 37 0 27 3 30 30 30 23 0 30 5 30 19 0 14 -8 21
+               -27 23 -22 2 -29 9 -33 33 -5 30 -39 49 -41 23z"
+                      />
+                      <path
+                        d="M3950 4585 c-17 -20 -5 -45 20 -45 11 0 23 7 26 15 6 15 -11 45 -26
+               45 -4 0 -13 -7 -20 -15z"
+                      />
+                      <path
+                        d="M4044 4585 c-9 -23 4 -47 23 -43 22 4 30 38 11 49 -19 13 -28 11 -34
+               -6z"
+                      />
+                      <path
+                        d="M4334 4590 c-62 -25 -134 -154 -134 -241 0 -45 26 -127 47 -151 14
+               -16 13 -20 -11 -49 -15 -17 -25 -37 -23 -43 7 -20 38 -18 62 4 l24 22 30 -21
+               c97 -69 230 -67 329 7 l33 24 24 -22 c25 -23 55 -21 55 3 0 8 -9 22 -19 31
+               -11 10 -21 30 -23 45 -2 19 -9 27 -28 29 -14 2 -39 19 -57 38 -35 38 -45 41
+               -63 20 -9 -12 -4 -23 29 -59 38 -41 40 -45 23 -59 -58 -51 -170 -65 -240 -29
+               -125 64 -170 209 -102 329 17 28 34 52 38 52 4 0 22 13 40 29 32 28 32 30 13
+               40 -22 12 -19 12 -47 1z"
+                      />
+                      <path
+                        d="M920 4515 c-5 -14 -10 -32 -10 -40 0 -7 -16 -16 -36 -20 -84 -15 -90
+               -55 -8 -55 l43 0 3 -77 c3 -70 5 -78 23 -78 18 0 20 8 23 78 l3 77 53 0 c56 0
+               83 17 72 45 -4 11 -21 15 -65 15 l-60 0 -3 37 c-4 44 -24 54 -38 18z"
+                      />
+                      <path
+                        d="M1133 4444 c-3 -8 2 -23 11 -32 15 -15 17 -15 32 0 21 21 11 48 -16
+               48 -11 0 -23 -7 -27 -16z"
+                      />
+                      <path
+                        d="M4462 4353 c2 -22 8 -28 28 -28 20 0 26 6 28 28 3 24 0 27 -28 27
+               -28 0 -31 -3 -28 -27z"
+                      />
+                      <path
+                        d="M1043 4293 c-20 -7 -17 -102 3 -110 21 -8 34 14 34 58 0 38 -16 60
+               -37 52z"
+                      />
+                      <path
+                        d="M802 4277 c-9 -10 -8 -18 2 -32 18 -25 48 -13 44 17 -4 27 -30 35
+               -46 15z"
+                      />
+                      <path
+                        d="M1133 4274 c-3 -8 2 -23 11 -32 15 -15 17 -15 32 0 21 21 11 48 -16
+               48 -11 0 -23 -7 -27 -16z"
+                      />
+                      <path
+                        d="M1581 4230 c-19 -11 -9 -45 14 -45 13 0 21 8 23 21 3 23 -17 37 -37
+               24z"
+                      />
+                      <path
+                        d="M3864 4196 c-66 -29 -95 -112 -60 -174 30 -55 111 -78 166 -47 24 13
+               27 11 68 -28 37 -37 42 -46 42 -87 0 -36 5 -52 24 -69 53 -50 136 -14 136 59
+               0 47 -33 80 -85 84 -31 2 -46 11 -81 52 -37 42 -44 55 -44 92 0 54 -24 97 -66
+               117 -39 18 -59 18 -100 1z m95 -59 c6 -8 14 -28 17 -45 5 -25 1 -36 -19 -56
+               -15 -14 -35 -26 -47 -26 -12 0 -32 12 -47 26 -20 20 -24 31 -19 57 3 18 14 38
+               23 45 22 16 78 15 92 -1z m225 -263 c22 -21 4 -54 -29 -54 -14 0 -25 2 -25 4
+               0 2 -3 11 -6 19 -5 14 20 47 36 47 5 0 16 -7 24 -16z"
+                      />
+                      <path
+                        d="M1747 4043 c-4 -3 -7 -21 -7 -39 0 -31 -2 -33 -37 -36 -30 -2 -38 -7
+               -38 -23 0 -16 8 -21 38 -23 33 -3 37 -6 37 -31 0 -15 7 -36 15 -47 15 -19 15
+               -19 30 0 8 11 15 32 15 48 0 24 4 28 29 28 16 0 34 7 41 15 19 23 -3 43 -40
+               37 -28 -4 -36 3 -31 32 6 33 -31 61 -52 39z"
+                      />
+                      <path
+                        d="M2132 3988 c-17 -17 -15 -152 2 -186 8 -15 23 -35 33 -44 18 -16 272
+               -115 454 -176 l75 -25 165 61 c90 33 200 73 244 88 48 17 94 41 115 60 33 30
+               35 36 38 108 2 42 1 88 -2 102 -8 31 -7 32 -166 -26 -63 -23 -153 -56 -200
+               -72 -47 -17 -94 -34 -105 -38 -83 -34 -89 -34 -223 13 -161 57 -339 122 -375
+               136 -36 14 -40 14 -55 -1z"
+                      />
+                      <path
+                        d="M3400 3950 c-7 -12 -9 -97 -8 -232 3 -205 4 -213 23 -213 13 0 23 10
+               29 30 14 41 13 41 37 19 21 -19 21 -18 45 9 23 27 24 33 24 202 0 95 -3 180
+               -6 189 -5 12 -21 16 -70 16 -53 0 -65 -3 -74 -20z m98 -180 c3 -157 -1 -176
+               -29 -141 -16 20 -19 40 -19 145 0 68 3 126 7 130 4 4 14 5 23 4 12 -3 15 -26
+               18 -138z"
+                      />
+                      <path
+                        d="M904 3895 c-4 -9 -2 -21 4 -27 15 -15 44 -1 40 19 -4 23 -36 29 -44
+               8z"
+                      />
+                      <path
+                        d="M623 3863 c-7 -2 -13 -17 -13 -33 0 -21 -6 -29 -25 -34 -32 -8 -34
+               -43 -2 -48 21 -3 22 -7 25 -118 l3 -115 -32 -12 c-37 -14 -34 -37 4 -41 36 -4
+               39 -49 5 -54 -31 -4 -35 -34 -6 -44 13 -4 70 -7 128 -6 58 1 186 1 285 1 290
+               1 285 0 285 32 0 19 -4 21 -49 23 -18 1 -27 8 -31 25 -8 37 -29 37 -41 1 -10
+               -27 -15 -31 -43 -28 -23 2 -32 8 -34 26 -4 30 -30 28 -42 -3 -8 -21 -16 -25
+               -50 -25 -33 0 -40 3 -40 19 0 11 -4 22 -9 25 -16 10 -41 -6 -41 -26 0 -16 -6
+               -19 -37 -16 -31 2 -39 7 -41 26 -2 14 -10 22 -22 22 -12 0 -20 -8 -22 -22 -3
+               -20 -10 -23 -60 -26 -56 -3 -58 -2 -58 23 0 22 4 25 33 25 42 0 49 6 72 60 26
+               61 30 65 56 46 41 -28 58 -20 87 42 42 87 40 85 69 62 43 -34 59 -26 104 50
+               40 68 45 100 15 100 -8 0 -30 -25 -48 -55 l-34 -56 -26 21 c-46 36 -64 27 -99
+               -47 -17 -38 -33 -70 -35 -72 -3 -3 -18 3 -35 13 -16 10 -36 15 -44 12 -8 -3
+               -27 -32 -41 -66 -22 -48 -32 -60 -50 -60 l-24 0 -2 177 c-3 172 -6 188 -35
+               176z"
+                      />
+                      <path
+                        d="M3837 3853 c-16 -15 -6 -33 18 -33 23 0 25 -4 25 -40 0 -28 5 -43 16
+               -47 19 -7 36 15 29 38 -8 25 5 49 26 49 12 0 19 7 19 20 0 18 -7 20 -63 20
+               -35 0 -67 -3 -70 -7z"
+                      />
+                      <path
+                        d="M1350 3820 c0 -27 -3 -30 -29 -30 -17 0 -33 -5 -36 -10 -10 -16 15
+               -40 41 -40 20 0 24 -5 24 -29 0 -16 6 -31 14 -34 19 -8 26 1 26 35 0 23 4 28
+               23 28 13 0 28 5 34 11 18 18 3 39 -28 39 -26 0 -29 4 -29 30 0 23 -4 30 -20
+               30 -16 0 -20 -7 -20 -30z"
+                      />
+                      <path
+                        d="M4400 3830 c0 -10 -10 -25 -22 -31 l-22 -12 22 -17 c12 -10 22 -28
+               22 -39 0 -12 6 -21 15 -21 8 0 15 7 15 15 0 8 9 23 20 32 11 10 20 23 20 29 0
+               6 -9 14 -20 17 -12 3 -20 14 -20 26 0 12 -6 21 -15 21 -8 0 -15 -9 -15 -20z"
+                      />
+                      <path
+                        d="M4747 3813 c-4 -3 -7 -95 -7 -203 0 -108 -2 -199 -5 -202 -3 -3 -15
+               -3 -28 -1 -22 4 -22 6 -19 151 3 115 0 151 -11 166 -29 40 -37 9 -37 -148 0
+               -160 -6 -184 -43 -170 -14 5 -17 27 -19 127 -3 101 -6 122 -18 122 -12 0 -16
+               -22 -20 -118 -4 -86 -9 -120 -19 -126 -31 -20 -41 -1 -41 79 0 53 -4 81 -14
+               89 -23 19 -35 -9 -38 -94 -3 -72 -5 -80 -23 -80 -16 0 -21 8 -25 47 -7 53 -13
+               63 -35 55 -10 -5 -15 -20 -15 -52 0 -42 -2 -45 -27 -46 -88 -3 -88 -3 -88 -29
+               l0 -24 280 -1 c154 0 294 2 310 5 37 7 43 43 8 48 -23 3 -23 4 -23 196 0 136
+               -3 195 -12 204 -14 14 -22 15 -31 5z"
+                      />
+                      <path
+                        d="M4144 3606 c-9 -24 4 -48 23 -44 12 2 18 12 18 28 0 29 -32 41 -41
+               16z"
+                      />
+                      <path
+                        d="M1635 3566 c-38 -17 -60 -41 -80 -89 -12 -30 -15 -89 -15 -340 0
+               -193 4 -316 11 -338 6 -19 27 -49 47 -66 30 -28 43 -33 86 -33 105 0 155 65
+               156 201 0 62 4 82 23 110 73 109 179 122 905 116 440 -3 526 -6 580 -20 150
+               -40 192 -91 192 -235 0 -109 53 -172 144 -172 48 0 58 4 97 39 l44 39 3 343
+               c2 320 1 346 -16 379 -31 56 -64 75 -134 75 -46 0 -63 -4 -66 -15 -9 -26 -95
+               -101 -142 -123 -45 -22 -47 -22 -775 -22 -840 0 -789 -5 -870 90 -62 72 -121
+               91 -190 61z"
+                      />
+                      <path
+                        d="M4031 3216 c-9 -11 -8 -18 5 -31 15 -15 19 -15 32 -1 17 17 10 46
+               -11 46 -8 0 -20 -6 -26 -14z"
+                      />
+                      <path
+                        d="M890 3150 c0 -13 7 -20 20 -20 13 0 20 7 20 20 0 13 -7 20 -20 20
+               -13 0 -20 -7 -20 -20z"
+                      />
+                      <path
+                        d="M622 3148 c-7 -7 -12 -29 -12 -49 0 -31 -4 -38 -22 -41 -15 -2 -23
+               -10 -23 -23 0 -13 8 -21 23 -23 20 -3 22 -8 22 -76 0 -68 -2 -74 -25 -84 -31
+               -14 -33 -40 -2 -44 20 -3 22 -9 25 -66 3 -59 2 -63 -23 -72 -32 -12 -30 -44 3
+               -48 31 -5 29 -40 -4 -52 -16 -7 -24 -16 -22 -28 3 -16 27 -17 296 -20 185 -1
+               300 1 312 8 13 7 20 23 22 53 3 38 6 42 31 45 19 2 27 9 27 23 0 14 -7 19 -30
+               19 l-30 0 0 168 c0 164 0 167 23 177 28 13 29 39 0 43 -18 3 -22 11 -25 45 -2
+               34 -7 42 -23 42 -19 0 -20 -8 -25 -235 l-5 -235 -207 -3 c-199 -2 -208 -3
+               -208 -22 0 -19 9 -20 208 -22 l207 -3 0 -25 0 -25 -237 -3 -238 -2 0 284 c0
+               223 -3 286 -13 295 -10 8 -17 7 -25 -1z"
+                      />
+                      <path
+                        d="M4455 3148 c-11 -6 -21 -12 -23 -13 -1 -1 -7 -16 -12 -34 -7 -26 -5
+               -36 16 -61 l25 -29 -43 -12 c-96 -25 -140 -60 -183 -146 -25 -50 -27 -52 -58
+               -46 -18 3 -38 14 -45 24 -7 10 -19 16 -28 12 -23 -9 -16 -127 8 -131 12 -2 21
+               6 28 22 7 20 16 26 40 26 17 0 32 -6 34 -12 2 -7 9 -31 15 -54 6 -22 21 -56
+               34 -75 29 -44 121 -99 164 -99 40 0 55 -24 27 -44 -15 -12 -16 -16 -5 -30 17
+               -20 74 -21 91 -1 14 17 5 35 -17 35 -10 0 -13 6 -9 16 3 9 6 18 6 20 0 2 10 4
+               23 4 24 0 78 30 116 64 64 58 90 189 52 271 -25 55 -99 121 -153 135 -61 17
+               -61 18 -33 52 14 16 25 33 25 38 0 23 -25 59 -47 69 -28 13 -23 13 -48 -1z
+               m45 -58 c0 -13 -7 -20 -20 -20 -19 0 -27 20 -13 33 13 14 33 6 33 -13z m66
+               -161 c53 -26 88 -68 104 -127 41 -155 -135 -285 -287 -211 -53 26 -88 69 -104
+               131 -41 153 133 279 287 207z"
+                      />
+                      <path
+                        d="M4415 2780 c-13 -21 8 -30 66 -30 52 0 59 2 59 20 0 18 -7 20 -59 20
+               -33 0 -63 -4 -66 -10z"
+                      />
+                      <path
+                        d="M4712 3094 c-54 -58 -60 -77 -26 -82 14 -2 38 15 73 53 43 46 51 58
+               41 70 -20 24 -31 18 -88 -41z"
+                      />
+                      <path
+                        d="M764 3103 c-4 -15 -16 -35 -28 -44 -19 -16 -19 -17 17 -34 36 -17 38
+               -17 57 0 23 21 26 45 6 45 -8 0 -16 12 -18 27 -4 36 -26 41 -34 6z"
+                      />
+                      <path
+                        d="M1071 3056 c-14 -17 -7 -36 14 -36 22 0 29 20 13 36 -13 13 -16 13
+               -27 0z"
+                      />
+                      <path
+                        d="M2330 2373 c0 -444 -4 -714 -11 -743 -12 -54 -49 -104 -92 -127 -18
+               -9 -63 -22 -101 -29 -38 -8 -80 -21 -93 -30 -28 -18 -53 -70 -53 -112 0 -35
+               37 -92 70 -109 19 -10 168 -13 641 -13 l616 0 34 23 c62 41 77 111 37 174 -24
+               39 -59 58 -133 68 -98 15 -159 64 -183 151 -9 30 -12 238 -12 743 l0 701 -160
+               0 -160 0 -2 -792 -3 -793 -35 0 -35 0 -3 793 -2 792 -160 0 -160 0 0 -697z"
+                      />
+                      <path
+                        d="M4124 2989 c-24 -26 -8 -54 31 -54 39 0 55 28 31 54 -24 26 -38 26
+               -62 0z"
+                      />
+                      <path
+                        d="M737 2963 c-10 -3 -17 -12 -15 -21 3 -15 23 -17 173 -17 163 0 170 1
+               170 20 0 19 -7 20 -155 22 -85 0 -163 -1 -173 -4z"
+                      />
+                      <path
+                        d="M720 2850 c0 -18 9 -19 166 -22 169 -3 198 1 188 27 -5 12 -36 15
+               -180 15 -166 0 -174 -1 -174 -20z"
+                      />
+                      <path
+                        d="M4812 2838 c-17 -17 -15 -63 3 -78 20 -17 34 -4 37 35 3 48 -15 68
+               -40 43z"
+                      />
+                      <path
+                        d="M720 2750 c0 -19 7 -20 175 -20 168 0 175 1 175 20 0 19 -7 20 -175
+               20 -168 0 -175 -1 -175 -20z"
+                      />
+                      <path
+                        d="M4776 2674 c-32 -32 -6 -81 37 -70 22 5 27 12 27 36 0 19 -7 33 -19
+               40 -25 13 -27 13 -45 -6z"
+                      />
+                      <path
+                        d="M4222 2497 c-53 -54 -64 -80 -37 -91 20 -7 127 100 123 123 -6 31
+               -34 21 -86 -32z"
+                      />
+                      <path
+                        d="M1917 2524 c-4 -4 -7 -18 -7 -31 0 -16 -6 -23 -19 -23 -25 0 -49 -28
+               -30 -34 8 -2 22 -6 31 -9 9 -3 18 -18 20 -34 4 -37 32 -37 36 -1 2 20 10 30
+               28 34 31 8 31 32 0 44 -14 5 -26 19 -28 31 -3 23 -19 35 -31 23z"
+                      />
+                      <path
+                        d="M3874 2475 c-3 -13 -15 -27 -25 -30 -25 -8 -24 -25 1 -32 11 -3 20
+               -14 20 -24 0 -12 7 -19 20 -19 13 0 20 7 20 20 0 11 7 20 15 20 8 0 15 9 15
+               20 0 11 -7 20 -15 20 -8 0 -15 9 -15 19 0 30 -29 35 -36 6z"
+                      />
+                      <path
+                        d="M3537 2483 c-4 -3 -7 -19 -7 -34 0 -23 -5 -28 -36 -33 -46 -9 -44
+               -40 4 -44 29 -3 32 -6 32 -38 0 -23 6 -37 16 -41 20 -7 34 13 34 50 0 23 4 27
+               30 27 18 0 33 6 37 15 7 20 1 26 -39 35 -19 4 -32 12 -30 19 7 34 -21 65 -41
+               44z"
+                      />
+                      <path
+                        d="M4672 2431 c-20 -12 -10 -46 13 -46 14 0 20 7 20 24 0 27 -13 35 -33
+               22z"
+                      />
+                      <path
+                        d="M1492 2413 c-15 -3 -22 -10 -20 -21 5 -25 135 -31 145 -6 3 9 0 20
+               -8 25 -14 9 -75 10 -117 2z"
+                      />
+                      <path
+                        d="M880 2387 c0 -8 -9 -22 -20 -32 -20 -18 -20 -19 -1 -36 10 -10 21
+               -24 23 -31 3 -9 16 -1 39 21 l33 34 -22 15 c-12 8 -22 21 -22 28 0 8 -7 14
+               -15 14 -8 0 -15 -6 -15 -13z"
+                      />
+                      <path
+                        d="M1137 2364 c-4 -4 -7 -33 -7 -64 0 -49 -4 -60 -30 -85 -16 -16 -30
+               -34 -30 -41 0 -16 -27 -21 -192 -35 -137 -11 -137 -11 -167 12 -16 13 -34 36
+               -39 50 -21 55 -113 38 -119 -22 -5 -40 22 -64 70 -63 35 1 51 -5 99 -44 55
+               -42 71 -73 48 -87 -5 -3 -10 -14 -10 -25 0 -21 -77 -73 -142 -96 -57 -19 -75
+               -51 -53 -94 29 -57 115 -31 119 36 1 19 13 35 44 56 l42 29 27 -20 c31 -25 89
+               -27 121 -5 20 14 24 14 45 -3 46 -35 117 -101 117 -106 0 -3 -21 -7 -47 -9
+               -40 -3 -48 -6 -48 -23 0 -16 8 -21 35 -23 27 -3 44 -13 71 -45 32 -37 41 -42
+               79 -42 36 0 47 6 72 35 25 30 29 41 24 76 -5 40 -5 40 67 94 58 44 78 53 107
+               52 50 -3 74 17 74 63 0 47 -25 69 -71 60 -26 -5 -42 1 -85 31 -85 59 -96 72
+               -95 111 1 29 8 39 42 63 61 42 72 57 53 77 -15 14 -20 12 -63 -21 -53 -40 -54
+               -40 -89 -25 -22 10 -25 19 -28 73 -2 45 -7 62 -18 64 -9 1 -19 0 -23 -4z m61
+               -186 c21 -21 14 -56 -14 -75 -26 -16 -27 -16 -45 6 -23 28 -24 45 -3 65 18 19
+               45 21 62 4z m-115 -91 c23 -36 69 -52 109 -38 28 10 36 8 67 -15 20 -14 57
+               -40 83 -57 26 -18 48 -37 48 -42 0 -6 -39 -39 -86 -74 -77 -57 -88 -62 -110
+               -52 -17 8 -31 8 -48 0 -22 -10 -32 -5 -104 57 -61 51 -82 75 -86 99 -8 43 -44
+               74 -97 83 -30 5 -45 13 -47 25 -3 15 6 17 60 18 35 1 88 4 118 9 30 4 60 8 66
+               9 7 0 19 -10 27 -22z m-186 -161 c-21 -31 -53 -32 -72 -3 -18 28 -11 55 19 67
+               16 7 26 3 44 -17 21 -23 22 -27 9 -47z m301 -178 c7 -7 12 -24 12 -38 0 -34
+               -37 -54 -63 -35 -32 23 -16 85 23 85 9 0 21 -5 28 -12z"
+                      />
+                      <path
+                        d="M4042 2243 c-35 -14 -42 -58 -42 -276 0 -278 -7 -267 156 -267 93 0
+               116 -3 120 -15 8 -19 -12 -44 -44 -56 -15 -6 -22 -16 -20 -27 3 -15 20 -17
+               168 -20 91 -1 175 0 188 3 33 8 27 34 -14 51 -27 12 -35 20 -32 37 3 21 9 22
+               120 27 102 4 119 8 132 25 13 16 15 60 16 246 0 209 -2 229 -19 250 l-19 24
+               -349 2 c-191 1 -354 -1 -361 -4z m682 -69 c13 -13 16 -45 16 -199 0 -101 -3
+               -190 -6 -199 -5 -14 -45 -16 -340 -16 l-334 0 0 209 c0 158 3 211 13 214 6 3
+               152 6 324 6 271 1 314 -1 327 -15z"
+                      />
+                      <path
+                        d="M4153 2074 c-3 -9 0 -20 8 -25 8 -5 120 -8 249 -6 228 2 235 3 235
+               22 0 19 -8 20 -243 23 -216 2 -243 1 -249 -14z"
+                      />
+                      <path
+                        d="M4161 1981 c-8 -5 -11 -16 -8 -25 6 -15 33 -16 249 -14 235 3 243 4
+               243 23 0 19 -7 20 -235 22 -129 2 -241 -1 -249 -6z"
+                      />
+                      <path
+                        d="M4154 1869 c-16 -27 20 -31 247 -30 128 1 236 4 241 7 4 3 8 12 8 20
+               0 12 -38 14 -244 14 -166 0 -247 -4 -252 -11z"
+                      />
+                      <path
+                        d="M1812 2228 c-7 -7 -12 -34 -12 -60 l0 -48 -60 0 c-48 0 -61 -4 -70
+               -19 -16 -32 12 -51 76 -51 l54 0 0 -74 c0 -55 4 -77 16 -87 31 -25 49 1 54 82
+               l5 74 57 5 c64 6 83 18 73 49 -6 18 -14 21 -71 21 l-64 0 0 48 c0 47 -12 72
+               -35 72 -6 0 -16 -5 -23 -12z"
+                      />
+                      <path
+                        d="M3474 2085 c-64 -32 -88 -72 -89 -146 0 -46 5 -62 29 -94 50 -65 132
+               -83 207 -45 120 62 112 233 -15 291 -54 25 -73 24 -132 -6z m110 -52 c40 -19
+               71 -72 62 -107 -23 -94 -147 -115 -191 -32 -31 58 -7 120 55 145 34 13 35 13
+               74 -6z"
+                      />
+                      <path
+                        d="M3840 1755 c-10 -12 -10 -18 0 -30 17 -21 37 -19 45 5 12 37 -20 55
+               -45 25z"
+                      />
+                      <path
+                        d="M3235 1730 c-7 -12 3 -50 13 -50 18 1 34 19 30 36 -4 21 -33 31 -43
+               14z"
+                      />
+                      <path
+                        d="M2108 1718 c-8 -21 2 -38 22 -38 19 0 30 17 23 38 -3 6 -13 12 -23
+               12 -10 0 -20 -6 -22 -12z"
+                      />
+                      <path
+                        d="M1810 1622 c-31 -10 -50 -36 -50 -69 0 -63 84 -70 112 -8 20 43 -18
+               91 -62 77z m16 -67 c-7 -18 -26 -20 -26 -2 0 18 24 41 28 27 2 -6 1 -17 -2
+               -25z"
+                      />
+                      <path
+                        d="M1284 1576 c-9 -24 4 -48 23 -44 24 4 24 52 0 56 -9 2 -20 -4 -23
+               -12z"
+                      />
+                      <path
+                        d="M1590 1575 c-20 -25 -1 -35 65 -35 65 0 79 7 69 33 -7 20 -117 23
+               -134 2z"
+                      />
+                      <path
+                        d="M3537 1555 c-19 -19 -12 -45 13 -45 24 0 34 30 17 47 -12 12 -16 12
+               -30 -2z"
+                      />
+                      <path
+                        d="M597 1547 c-10 -25 9 -38 49 -35 32 2 40 7 42 26 3 20 -1 22 -41 22
+               -28 0 -47 -5 -50 -13z"
+                      />
+                      <path
+                        d="M733 1544 c-9 -23 10 -36 48 -32 26 2 35 8 37 26 3 20 -1 22 -38 22
+               -28 0 -43 -5 -47 -16z"
+                      />
+                      <path
+                        d="M3760 1535 c-15 -18 -6 -45 14 -45 22 0 38 34 24 48 -16 16 -23 15
+               -38 -3z"
+                      />
+                      <path
+                        d="M1577 1466 c-7 -17 11 -36 35 -36 23 0 23 -11 -1 -42 -26 -33 -30
+               -61 -9 -66 20 -4 114 130 103 147 -10 17 -122 14 -128 -3z"
+                      />
+                      <path
+                        d="M3960 1465 c-10 -12 -10 -18 0 -30 17 -21 37 -19 45 5 12 37 -20 55
+               -45 25z"
+                      />
+                      <path
+                        d="M3693 1423 c-7 -2 -13 -13 -13 -24 0 -14 9 -21 30 -25 l30 -6 0 -73
+               c0 -80 18 -110 62 -103 31 4 39 48 9 48 -19 0 -21 6 -21 65 0 65 0 65 28 65
+               37 0 54 17 41 42 -8 15 -21 18 -82 17 -40 0 -78 -3 -84 -6z"
+                      />
+                      <path
+                        d="M1001 1406 c-7 -8 -11 -20 -10 -28 1 -7 1 -27 0 -45 -1 -27 -5 -32
+               -28 -35 -41 -4 -39 -41 2 -48 l30 -5 5 -245 c5 -230 10 -280 30 -280 15 0 21
+               121 18 324 l-3 200 25 6 c16 4 26 14 28 28 3 19 -1 22 -27 22 -29 0 -30 1 -33
+               57 -3 58 -16 75 -37 49z"
+                      />
+                      <path
+                        d="M4684 1407 c-3 -8 -6 -52 -8 -98 -4 -104 -2 -94 -30 -107 -13 -6 -27
+               -20 -31 -31 -12 -40 -42 -36 -90 13 -36 37 -44 53 -47 88 -2 35 -7 43 -23 43
+               -17 0 -20 -8 -23 -48 -2 -37 -8 -51 -28 -64 -63 -41 -66 -114 -8 -161 43 -34
+               48 -81 9 -102 -13 -7 -27 -21 -30 -31 -3 -9 -12 -20 -20 -23 -17 -6 -45 2 -45
+               14 0 5 -16 23 -35 41 -34 33 -35 35 -35 111 0 78 -9 99 -35 78 -11 -9 -15 -34
+               -15 -91 0 -68 -3 -80 -20 -89 -11 -6 -27 -24 -35 -40 -14 -27 -20 -29 -78 -32
+               -54 -3 -62 -5 -62 -23 0 -17 8 -21 60 -25 47 -4 68 -11 98 -35 33 -27 37 -35
+               37 -75 0 -58 9 -90 25 -90 18 0 25 23 25 77 0 41 4 50 42 85 47 43 66 47 91
+               18 9 -11 21 -20 25 -20 5 0 33 25 61 55 29 30 56 55 62 55 16 0 10 16 -16 40
+               -36 34 -32 66 15 111 44 43 78 50 98 19 14 -22 41 -27 43 -7 1 6 2 30 3 52 1
+               40 1 40 43 43 46 3 61 23 36 47 -12 13 -15 35 -14 99 1 45 -1 90 -5 99 -7 20
+               -33 23 -40 4z m-426 -535 c4 -28 -14 -52 -38 -52 -26 0 -43 26 -36 55 6 22 11
+               26 39 23 25 -2 33 -8 35 -26z"
+                      />
+                      <path
+                        d="M4201 1391 c-20 -36 -10 -91 15 -91 21 0 33 32 25 70 -8 40 -25 49
+               -40 21z"
+                      />
+                      <path
+                        d="M655 1356 c-30 -30 -32 -50 -6 -68 16 -11 19 -29 22 -110 3 -74 8
+               -101 21 -114 15 -16 17 -14 23 27 3 24 5 98 3 164 -3 104 -5 120 -20 123 -10
+               2 -29 -8 -43 -22z"
+                      />
+                      <path
+                        d="M4185 1249 c-4 -5 -4 -21 -1 -35 5 -17 13 -24 31 -24 31 0 52 34 34
+               56 -13 16 -55 19 -64 3z"
+                      />
+                      <path
+                        d="M1116 1235 c-3 -9 -6 -128 -6 -265 l0 -248 -25 -6 c-67 -17 15 -50
+               122 -49 39 0 76 4 82 7 16 10 13 43 -4 50 -13 5 -15 43 -15 261 0 225 -2 256
+               -16 262 -9 3 -20 0 -25 -8 -5 -8 -9 -128 -9 -266 l0 -253 -30 0 -30 0 -2 262
+               c-3 233 -5 263 -19 266 -9 2 -19 -4 -23 -13z"
+                      />
+                      <path
+                        d="M1760 1187 c-27 -14 -38 -43 -21 -60 7 -7 16 -5 30 7 38 34 42 6 6
+               -37 -40 -46 -41 -50 -20 -67 22 -18 95 63 95 106 0 48 -45 74 -90 51z"
+                      />
+                      <path
+                        d="M894 1126 c-3 -8 -4 -73 -2 -144 2 -96 7 -134 18 -147 14 -17 15 -15
+               22 26 8 56 10 227 2 257 -7 25 -32 30 -40 8z"
+                      />
+                      <path
+                        d="M1486 1104 c-23 -22 -20 -52 9 -78 13 -12 36 -55 51 -94 l26 -71 -21
+               -27 c-26 -33 -27 -91 -3 -120 46 -54 101 -54 151 2 30 33 34 34 102 34 55 0
+               71 3 76 16 9 24 -15 34 -87 34 -62 0 -66 1 -93 35 -18 22 -36 35 -52 35 -20 0
+               -27 10 -49 68 -15 38 -26 88 -26 114 0 37 -4 50 -19 58 -27 14 -47 13 -65 -6z
+               m169 -304 c15 -17 16 -24 7 -45 -14 -31 -56 -34 -72 -6 -14 27 -13 37 6 55 21
+               21 37 20 59 -4z"
+                      />
+                      <path
+                        d="M787 1023 c-13 -12 -7 -48 12 -76 l18 -29 7 46 c4 25 4 50 1 56 -7
+               11 -28 13 -38 3z"
+                      />
+                      <path
+                        d="M1963 1004 c-3 -8 -1 -20 5 -26 16 -16 42 -2 42 22 0 24 -38 28 -47
+               4z"
+                      />
+                      <path
+                        d="M2274 998 c-5 -7 -7 -21 -6 -31 2 -12 -5 -19 -27 -23 -40 -8 -44 -44
+               -6 -44 20 0 25 -5 25 -24 0 -26 24 -51 40 -41 5 3 10 19 10 35 0 24 5 29 27
+               32 39 4 42 34 4 41 -23 5 -30 12 -33 33 -3 31 -22 42 -34 22z"
+                      />
+                      <path
+                        d="M3146 945 c-3 -9 -6 -25 -6 -35 0 -19 -19 -30 -51 -30 -12 0 -19 -7
+               -19 -20 0 -20 4 -22 45 -24 15 -1 21 -9 23 -31 7 -63 52 -66 52 -4 0 24 4 29
+               24 29 33 0 53 25 36 45 -7 9 -22 14 -34 13 -17 -2 -22 3 -26 32 -5 37 -33 53
+               -44 25z"
+                      />
+                      <path
+                        d="M3664 945 c-12 -9 -44 -14 -90 -15 -52 0 -75 -4 -84 -15 -20 -25 -2
+               -34 85 -41 72 -6 82 -4 104 15 27 24 50 18 28 -7 -19 -23 -11 -42 18 -42 46 0
+               60 63 22 98 -27 26 -55 28 -83 7z"
+                      />
+                      <path
+                        d="M2637 927 c-38 -30 -44 -90 -10 -95 15 -2 25 5 35 25 16 33 58 43 78
+               18 17 -21 5 -43 -36 -65 -22 -13 -29 -24 -29 -46 0 -44 28 -41 85 7 44 37 50
+               47 50 80 0 26 -8 47 -26 68 -22 27 -33 31 -72 31 -34 0 -55 -7 -75 -23z"
+                      />
+                      <path
+                        d="M1893 873 c-15 -6 -17 -39 -3 -48 20 -12 51 6 48 28 -3 22 -22 30
+               -45 20z"
+                      />
+                      <path
+                        d="M1977 823 c-4 -3 -7 -23 -7 -44 0 -40 -22 -58 -46 -38 -11 9 -18 8
+               -29 -1 -21 -17 -19 -27 10 -46 45 -30 106 5 119 68 9 46 -22 87 -47 61z"
+                      />
+                      <path
+                        d="M3484 795 c-10 -25 4 -45 31 -45 24 0 25 -2 25 -63 0 -69 15 -102 42
+               -92 14 5 18 22 20 78 3 67 5 72 28 77 18 4 25 12 25 30 0 24 -2 25 -83 28 -67
+               2 -83 0 -88 -13z"
+                      />
+                      <path
+                        d="M2672 678 c-25 -25 -7 -68 29 -68 25 0 42 26 35 55 -7 27 -42 35 -64
+               13z"
+                      />
+                    </g>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">T Researcher</h3>
+                  <p class="text-gray-500">
+                    Herramienta Interactiva para Pruebas t de Student
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  T-Researcher es una herramienta innovadora diseñada para
+                  simplificar el análisis estadístico mediante pruebas t de
+                  Student. Este tipo de prueba es esencial para comparar medias
+                  en diferentes contextos, como investigaciones científicas,
+                  estudios de mercado y análisis clínicos. La aplicación permite
+                  cargar datos en formatos como CSV o Excel, seleccionar
+                  variables numéricas y realizar pruebas t de manera intuitiva.
+                  También incluye funcionalidades avanzadas como visualizaciones
+                  gráficas interactivas y generación de informes en PDF, lo que
+                  la convierte en una solución accesible para estudiantes,
+                  investigadores y profesionales.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Facilitar la realización de pruebas t de Student en
+                    diferentes escenarios.
+                  </li>
+                  <li>
+                    Simplificar la interpretación de resultados mediante
+                    gráficos interactivos.
+                  </li>
+                  <li>
+                    Generar informes profesionales y detallados en formato PDF.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >Streamlit</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >FPDF y BytesIO</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >Pandas y NumPy</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >SciPy</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >Seaborn y Matplotlib</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">2 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    GitHub Repository
+                  </a>
+                  <a
+                    href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 4 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Jueces de Paz APP</h3>
+                  <p class="text-gray-500">
+                    Gestión Mensual de Datos para la Corte Superior de Justicia
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Esta aplicación fue desarrollada para facilitar la gestión y
+                  recopilación de datos mensuales de los jueces de paz en la
+                  Corte Superior de Justicia del Poder Judicial de Puno.
+                  Diseñada con un enfoque en la usabilidad, la aplicación
+                  permite a los jueces completar un formulario estructurado en
+                  diferentes secciones y ofrece un dashboard interactivo con
+                  estadísticas detalladas() y gráficos. Además, incluye
+                  funcionalidades modernas como notificaciones tipo mensajería
+                  para solicitudes administrativas y filtros avanzados por
+                  usuario y periodo.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Digitalizar y automatizar el proceso de llenado de datos
+                    mensuales.
+                  </li>
+                  <li>
+                    Ofrecer un dashboard interactivo con estadísticas
+                    detalladas.
+                  </li>
+                  <li>
+                    Facilitar la toma de decisiones mediante gráficos y reportes
+                    visuales.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Laravel</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >AdminLTE</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >Tailwind CSS</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >AOS y Font Awesome</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >MySQL</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >Spite</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">4 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    Solicitar al correo: marfimaqui24@gmail.com
+                  </a>
+                  <!-- <a
+                    href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 5 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">
+                    YOLOv8 - Aplicación de Conteo de Personas
+                  </h3>
+                  <p class="text-gray-500">
+                    Detección y Seguimiento en Tiempo Real entrando y saliendo
+                    de un local
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Esta aplicación utiliza YOLOv8 para realizar el conteo de
+                  personas en tiempo real mediante video en vivo. Está diseñada
+                  para detectar, rastrear y contar personas dentro de un área
+                  específica, asignando un ID único a cada individuo para evitar
+                  duplicados y mejorar la precisión. La herramienta es ideal
+                  para monitorear entradas y salidas en lugares concurridos,
+                  como universidades, oficinas o eventos, proporcionando datos
+                  procesados de manera eficiente y almacenando los resultados en
+                  video.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Detectar y contar personas en tiempo real de manera precisa
+                    entrando y saliendo de un local bajo las normas de aforo.
+                  </li>
+                  <li>
+                    Evitar el conteo duplicado mediante seguimiento individual
+                    con ID único.
+                  </li>
+                  <li>
+                    Ofrecer una experiencia interactiva con la opción de
+                    procesar video en vivo.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >YOLOv8</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >OpenCV</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >Streamlit</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >tracker</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">4 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    Solicitar al correo: marfimaqui24@gmail.com
+                  </a>
+                  <!-- <a
+                    href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a>-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 6 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">Gestión de Expedientes</h3>
+                  <p class="text-gray-500">
+                    API Flask con Frontend Interactivo
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Esta aplicación está diseñada para el seguimiento eficiente de
+                  expedientes, permitiendo a los usuarios filtrar y consultar
+                  información en una base de datos con más de un millón de
+                  registros. Construida con Flask como backend y un frontend en
+                  HTML/JavaScript, la solución prioriza la velocidad y precisión
+                  en las búsquedas, optimizando el manejo de grandes volúmenes
+                  de datos en entornos administrativos.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Facilitar el seguimiento y consulta de expedientes mediante
+                    filtros avanzados.
+                  </li>
+                  <li>
+                    Garantizar una respuesta rápida incluso con más de 2
+                    millones de registros.
+                  </li>
+                  <li>
+                    Proveer una interfaz intuitiva para usuarios
+                    administrativos.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">
+                  Tecnologías Utilizadas
+                </h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Python</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >Flask</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >HTML y CSS Tailwind</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >SQL Server y MySQL</span
+                  >
+                </div>
+
+                <!-- Proyectos Estadística -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">1 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    Solicitar al correo: marfimaqui24@gmail.com
+                  </a>
+                  <!-- <a
+                    href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 7 -->
+          <div
+            class="project-card bg-white rounded-xl p-8 shadow-lg"
+            data-aos="fade-right"
+          >
+            <div class="relative z-10">
+              <!-- Header -->
+              <div class="flex items-center gap-4 mb-6">
+                <div
+                  class="h-14 w-14 bg-blue-100 rounded-xl flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold">DASHBOARDS POWER BI</h3>
+                  <p class="text-gray-500">
+                    Visualización Interactiva de Datos
+                  </p>
+                </div>
+              </div>
+
+              <!-- Project Description -->
+              <div class="project-content" id="content1">
+                <h4 class="font-semibold text-lg mb-2">
+                  Descripción del Proyecto
+                </h4>
+                <p class="text-gray-600 mb-4">
+                  Este conjunto de proyectos en Power BI está diseñado para
+                  analizar y presentar datos de manera interactiva y dinámica,
+                  facilitando la toma de decisiones basada en información clave.
+                  Incluye dashboards personalizados, análisis estadísticos y
+                  visualizaciones avanzadas que resumen grandes volúmenes de
+                  datos de manera clara y efectiva. Un ejemplo destacado es el
+                  Informe del Centro de Salud Distritos de Puno, que permite
+                  filtrar datos por fechas, edades, tipos de atención,
+                  profesionales de salud y establecimientos, mostrando métricas
+                  clave como recuentos y distribuciones en gráficos
+                  interactivos.
+                </p>
+
+                <h4 class="font-semibold text-lg mb-2">Objetivos</h4>
+                <ul class="list-disc list-inside text-gray-600 mb-4">
+                  <li>
+                    Ofrecer análisis visuales que simplifiquen la interpretación
+                    de datos complejos.
+                  </li>
+                  <li>
+                    Proveer dashboards personalizados para diferentes
+                    necesidades y sectores.
+                  </li>
+                  <li>
+                    Facilitar la toma de decisiones basada en datos mediante
+                    filtros avanzados y gráficos interactivos.
+                  </li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mb-2">Objetos Visuales</h4>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="tech-badge px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
+                    >Gráfico de Lineas</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-green-100 text-green-600 rounded-full text-sm"
+                    >Gráfico Circular</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-sm"
+                    >Gráfico de Columnas Agrupadas</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-yellow-100 text-yellow-600 rounded-full text-sm"
+                    >Mapa</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm"
+                    >Segmentación de mosaicos</span
+                  >
+                  <span
+                    class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm"
+                    >Tarjeta (Nueva)</span
+                  >
+                </div>
+
+                <!-- Project Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Tiempo de Desarrollo</p>
+                    <p class="font-bold text-lg">1 meses</p>
+                  </div>
+                  <div class="bg-gray-50 p-4 rounded-lg">
+                    <p class="text-sm text-gray-500">Estado</p>
+                    <p class="font-bold text-lg text-green-600">Activo</p>
+                  </div>
+                </div>
+
+                <!-- Links and Button -->
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="#"
+                    class="project-link flex items-center text-blue-600 hover:text-blue-800"
+                  >
+                    <svg
+                      class="w-5 h-5 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                    Solicitar al correo: marfimaqui24@gmail.com
+                  </a>
+                  <!-- <a
+                    href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                    class="expand-button bg-blue-600 text-white py-3 px-6 rounded-lg text-center font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    Ir a la Aplicación
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </a> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Project Card 8 -->
+          <!-- Series de tiempo -->
+          <!-- Project Card 9 -->
+          <!-- Optimizador de Hiperparámetros -->
+          <!-- Project Card 10 -->
+          <!-- Ayudante de Cátedra -->
+          <!-- Project Card 11 -->
+          <!-- Guía Python -->
+          <!-- Project Card 12 -->
+          <!-- Guía C++ -->
+          <!-- Project Card 13 -->
+          <!-- Guía Hadoop Spark -->
+          <!-- Project Card 14 -->
+          <!-- Simulación de Red Neuronal con Dask -->
+          <!-- Project Card 15 -->
+          <!-- Guía  -->
+          <!-- ... -->
+        </div>
+      </div>
+      <script>
+        AOS.init({
+          duration: 1000,
+          once: true,
+          offset: 100,
+        });
+
+        // Add hover effect to tech badges
+        const techBadges = document.querySelectorAll(".tech-badge");
+        techBadges.forEach((badge) => {
+          badge.addEventListener("mouseenter", () => {
+            badge.style.transform = "scale(1.1)";
+          });
+          badge.addEventListener("mouseleave", () => {
+            badge.style.transform = "scale(1)";
+          });
+        });
+      </script>
+    </section>
+
+    <!-- Publicaciones Section -->
+    <style>
+      @keyframes ambientLight {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes glowPulse {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(200%);
+        }
+      }
+
+      .publications-container {
+        position: relative;
+        background: linear-gradient(45deg, #1a1a1a, #2d3748, #1a1a1a);
+        background-size: 200% 200%;
+        animation: ambientLight 15s ease infinite;
+        padding: 2rem;
+        border-radius: 1rem;
+      }
+
+      .publication-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .publication-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        animation: shimmer 8s infinite;
+      }
+
+      .publication-card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        box-shadow: 0 0 15px #3b82f6;
+      }
+
+      .publication-card:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
+          0 0 15px rgba(59, 130, 246, 0.2);
+      }
+
+      .publication-card:hover::after {
+        opacity: 1;
+      }
+
+      .glow-effect {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(59, 130, 246, 0.1) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      .publication-card:hover .glow-effect {
+        opacity: 1;
+        animation: glowPulse 3s infinite;
+      }
+
+      .abstract-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .abstract-content.expanded {
+        max-height: 1000px;
+      }
+
+      .academic-badge {
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .academic-badge::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .academic-badge:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .academic-badge:hover::before {
+        left: 100%;
+      }
+
+      .action-button {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .action-button::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.2) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .action-button:hover::after {
+        opacity: 1;
+      }
+
+      @keyframes floatAnimation {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating-icon {
+        animation: floatAnimation 3s ease-in-out infinite;
+      }
+    </style>
+
+    <section id="publicaciones">
+      <div class="publications-container">
+        <div class="grid gap-8">
+          <h2
+            class="text-4xl font-bold text-center mb-4 text-white"
+            data-aos="fade-up"
+          >
+            PUBLICACIONES
+          </h2>
+          <p
+            class="text-gray-300 text-center mb-16 max-w-2xl mx-auto"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            Contribuciones significativas al campo de la investigación y
+            desarrollo
+          </p>
+          <!-- Publication Card -->
+          <div
+            class="publication-card bg-gradient-to-r from-gray-800/90 to-gray-900/90 rounded-lg shadow-xl"
+            data-aos="fade-up"
+          >
+            <div class="glow-effect"></div>
+            <!-- Header Section -->
+            <div class="p-6 border-b border-gray-700/50">
+              <div class="flex justify-between items-start">
+                <h3
+                  class="text-2xl font-bold text-white mb-2 pr-4 hover:text-blue-400 transition-colors"
+                >
+                  How GPUs Kill Threads in Neural Network Training (Springer)
+                </h3>
+                <button
+                  class="expand-btn bg-blue-600/80 hover:bg-blue-700 text-white rounded-full p-2 transition-all hover:shadow-lg hover:shadow-blue-600/50"
+                  onclick="toggleAbstract(this)"
+                  aria-label="Toggle abstract"
+                >
+                  <svg
+                    class="w-6 h-6 transform transition-transform duration-500 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Publication Metadata -->
+              <div class="flex flex-wrap gap-3 mt-3">
+                <span
+                  class="academic-badge px-4 py-1.5 bg-blue-900/50 text-blue-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path
+                      d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                    />
+                  </svg>
+                  ICDTA
+                </span>
+                <span
+                  class="academic-badge px-4 py-1.5 bg-purple-900/50 text-purple-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  2024
+                </span>
+                <a
+                  href="https://doi.org/10.1007/978-3-031-68660-3_6"
+                  target="_blank"
+                  class="academic-badge px-4 py-1.5 bg-green-900/50 text-green-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm hover:bg-green-800/50"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                  DOI: 10.1007/978-3-031-68660-3_6
+                </a>
+              </div>
+            </div>
+
+            <!-- Expandable Abstract -->
+            <div class="abstract-content">
+              <div class="p-6 border-b border-gray-700/50 bg-gray-800/50">
+                <h4 class="text-lg font-semibold text-white mb-3">Abstract</h4>
+                <p class="text-gray-300 leading-relaxed">
+                  The optimization and exploration of computing resources
+                  continue significant challenges in challenges in the field of
+                  neural network training. This paper present an analysis of the
+                  effectiveness of several computational architectures,
+                  including Graphics Processing Units (GPUs), Central Processing
+                  Units (CPUs), and CPUs using threaded techniques, in
+                  supporting neural network training. The research highlights
+                  the significant differences in training times across different
+                  platforms, demonstrating the effectiveness of GPU-based
+                  techniques. In order to guarantee a thorough assessment, the
+                  research uses two separate datasets: MNIST(Modified National
+                  Institute of Standards and Technology), which has 60,000
+                  photos, and USPS(United States Postal Service), which has
+                  7,291 images. These datasets provide the basis of our
+                  empirical work, representing a range of dimensions and
+                  complexity. The investigation's findings demonstrate the
+                  superiority of GPUs in accelerating neural network training,
+                  also provide insightful information on how best to use compute
+                  resources for these kinds of jobs. This study offers a
+                  thorough understanding of the dynamics involved in neural
+                  network training by analyzing the minute variations in
+                  performance across various computational architectures.
+                  Additionally, it lays the groundwork for future investigations
+                  into how to make these training procedures more effective,
+                  which might result in faster progress in the field of
+                  artificial intelligence.
+                </p>
+
+                <div class="mt-4">
+                  <h4 class="text-sm font-semibold text-gray-400 mb-2">
+                    Keywords
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      CPU
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      GPU
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Threads
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Neural Networks
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="p-6 flex flex-wrap items-center justify-between gap-4 bg-gray-900/50"
+            >
+              <a
+                href="https://doi.org/10.1007/978-3-031-68660-3_6"
+                class="action-button text-blue-400 hover:text-blue-300 flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-900/20"
+              >
+                <svg
+                  class="w-5 h-5 floating-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+                View on Publisher Site
+              </a>
+              <button
+                onclick="window.location.href='https://doi.org/10.1007/978-3-031-68660-3_6'"
+                class="action-button bg-gradient-to-r from-blue-600/90 to-blue-700/90 hover:from-blue-700/90 hover:to-blue-800/90 text-white px-6 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-blue-600/50 hover:-translate-y-0.5"
+              >
+                Read Article
+                <svg
+                  class="w-5 h-5 floating-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="publication-card bg-gradient-to-r from-gray-800/90 to-gray-900/90 rounded-lg shadow-xl"
+            data-aos="fade-up"
+          >
+            <div class="glow-effect"></div>
+            <!-- Header Section -->
+            <div class="p-6 border-b border-gray-700/50">
+              <div class="flex justify-between items-start">
+                <h3
+                  class="text-2xl font-bold text-white mb-2 pr-4 hover:text-blue-400 transition-colors"
+                >
+                  Integration of Text Mining and Complex Social Network Analysis
+                  for Quantitative Characterization of Discursive Evolution in
+                  Artificial Intelligence Through Streaming Platforms (Scopus
+                  Q2)
+                </h3>
+                <button
+                  class="expand-btn bg-blue-600/80 hover:bg-blue-700 text-white rounded-full p-2 transition-all hover:shadow-lg hover:shadow-blue-600/50"
+                  onclick="toggleAbstract(this)"
+                  aria-label="Toggle abstract"
+                >
+                  <svg
+                    class="w-6 h-6 transform transition-transform duration-500 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Publication Metadata -->
+              <div class="flex flex-wrap gap-3 mt-3">
+                <span
+                  class="academic-badge px-4 py-1.5 bg-blue-900/50 text-blue-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path
+                      d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
+                    />
+                  </svg>
+                  VISUAL REVIEW
+                </span>
+                <span
+                  class="academic-badge px-4 py-1.5 bg-purple-900/50 text-purple-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  2024
+                </span>
+                <a
+                  href="http://dx.doi.org/10.62161/revvisual.v16.5288"
+                  target="_blank"
+                  class="academic-badge px-4 py-1.5 bg-green-900/50 text-green-200 rounded-full text-sm flex items-center gap-2 backdrop-blur-sm hover:bg-green-800/50"
+                >
+                  <svg
+                    class="w-4 h-4 floating-icon"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                  DOI: 10.62161/revvisual.v16.5288
+                </a>
+              </div>
+            </div>
+
+            <!-- Expandable Abstract -->
+            <div class="abstract-content">
+              <div class="p-6 border-b border-gray-700/50 bg-gray-800/50">
+                <h4 class="text-lg font-semibold text-white mb-3">Abstract</h4>
+                <p class="text-gray-300 leading-relaxed">
+                  This study provides a quantitative characterization of the
+                  discursive evolution in Artificial Intelligence (AI) across
+                  streaming platforms (such as YouTube), by integrating text
+                  mining and complex social network analysis. Using a
+                  comprehensive corpus from leading platforms, natural language
+                  processing algorithms were employed to analyze the textual
+                  content, identifying patterns, emerging themes, and shifts in
+                  discourse about AI. Concurrently, a social network analysis
+                  was conducted to examine the interaction structures and the
+                  influence of different actors in disseminating information.
+                  The findings reveal significant trends in the presentation and
+                  perception of AI, highlighting the evolution of specific
+                  themes, differences in perception among various groups, and
+                  the influence of factors such as technological advancements
+                  and global events. This analysis provides a deeper
+                  understanding of AI communication and perception in the
+                  digital realm, offering valuable insights for academics,
+                  communicators, and policymakers in the field of Artificial
+                  Intelligence.
+                </p>
+
+                <!-- Keywords -->
+                <div class="mt-4">
+                  <h4 class="text-sm font-semibold text-gray-400 mb-2">
+                    Keywords
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Artificial Intelligence
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Discursive Evolution
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Text Mining
+                    </span>
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Social Network Analysis
+                    </span>
+
+                    <span
+                      class="text-xs px-3 py-1.5 bg-gray-700/50 text-gray-300 rounded-full backdrop-blur-sm hover:bg-gray-700/70 transition-colors"
+                    >
+                      Streaming Platforms
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="p-6 flex flex-wrap items-center justify-between gap-4 bg-gray-900/50"
+            >
+              <a
+                href="http://dx.doi.org/10.62161/revvisual.v16.5288"
+                class="action-button text-blue-400 hover:text-blue-300 flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-900/20"
+              >
+                <svg
+                  class="w-5 h-5 floating-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+                View on Publisher Site
+              </a>
+              <button
+                onclick="window.location.href='http://dx.doi.org/10.62161/revvisual.v16.5288'"
+                class="action-button bg-gradient-to-r from-blue-600/90 to-blue-700/90 hover:from-blue-700/90 hover:to-blue-800/90 text-white px-6 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 hover:shadow-lg hover:shadow-blue-600/50 hover:-translate-y-0.5"
+              >
+                Read Article
+                <svg
+                  class="w-5 h-5 floating-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function toggleAbstract(button) {
+        const card = button.closest(".publication-card");
+        const content = card.querySelector(".abstract-content");
+        const icon = button.querySelector("svg");
+
+        content.classList.toggle("expanded");
+        icon.style.transform = content.classList.contains("expanded")
+          ? "rotate(180deg)"
+          : "";
+
+        if (content.classList.contains("expanded")) {
+          card.style.transform = "scale(1.02)";
+          setTimeout(() => {
+            card.style.transform = "scale(1)";
+          }, 200);
+        }
+      }
+
+      // Initialize AOS if not already initialized
+      if (typeof AOS !== "undefined") {
+        AOS.init({
+          duration: 1000,
+          once: true,
+          mirror: true,
+        });
+      }
+    </script>
+
+    <!-- Certificaciones Section -->
+    <section
+      class="py-24 bg-gradient-to-t from-gray-50 to-white"
+      id="certificados"
+    >
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">
+          CERTIFICADOS Adicionales
+        </h2>
+        <p
+          class="text-gray-600 text-center mb-16 max-w-2xl mx-auto"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          Validación profesional de habilidades y conocimientos
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/1.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Introduction to Data Science</h3>
+                <p class="text-gray-500">Cisco Networking Academy</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Data Science</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Análisis de Datos</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Ingenieria de Datos</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img src="/api/placeholder/48/48" alt="AWS" class="rounded-lg" />
+              <div>
+                <h3 class="font-bold text-lg">Fibra Optica</h3>
+                <p class="text-gray-500">AXION</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Teoria</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Fusión</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/2.jpeg"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Especialización en Gestión Pública
+                </h3>
+                <p class="text-gray-500">Colegio de Abogados del Perú</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2024</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Contrataciones con el Estado</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Presupuesto por Resultados</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/3.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Q GIS Básico - Intermedio</h3>
+                <p class="text-gray-500">Udemy</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2022</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >QGIS Interface</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Gestión de mapas</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm"
+                  >Manejo de Objetos y Datos</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/4.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Ingles Intermedio</h3>
+                <p class="text-gray-500">ICPNA</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Basico</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Intermedio</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/5.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Salud Mental</h3>
+                <p class="text-gray-500">Universidad Nacional del Altiplano</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Bienestar psicológico</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Depresión, Estrés, Ansiedad</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 7 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/6.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Curso de Entorno de Trabajo para Ciencia de Datos con Jupyter
+                  Notebooks y Anaconda
+                </h3>
+                <p class="text-gray-500">Platzi</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2022</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Ciencia de Datos</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Jupyter Notebooks</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 8 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/6.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Curso de Matemáticas para Data Science: Estadística
+                  Descriptiva
+                </h3>
+                <p class="text-gray-500">Platzi</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Estadística Descriptiva</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Jupyter Notebooks</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/6.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Curso Práctico de Regresión Lineal con Python
+                </h3>
+                <p class="text-gray-500">Platzi</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Python</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Regresión Lineal</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/10.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Asistido y Defendido la Comunicación
+                </h3>
+                <p class="text-gray-500">
+                  XI Congreso Internacional Ciudades Creativas - Universidad de
+                  Valladolid
+                </p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2024</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Asistencia</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Ponencia</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/3.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Power BI</h3>
+                <p class="text-gray-500">Udemy</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Dashboards Avanzadas</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Powe Query</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >DAX</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Inteligencia de Tiempo con DAX</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/8.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Basic of Quantum Information</h3>
+                <p class="text-gray-500">IBM</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Python</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Single and Multiple Systems</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Quantum Circuits</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/9.png"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">
+                  Basic Science Tools Information
+                </h3>
+                <p class="text-gray-500">Cognitive Class</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2023</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Packages, APIs, Data Sets and Models
+                </span>
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Jupyter Notebooks and JupyterLab</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div
+            class="certification-card bg-white rounded-xl p-6 shadow-lg"
+            data-aos="flip-left"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="/certificados/11.gif"
+                alt="AWS"
+                class="rounded-lg"
+                style="max-width: 20%; height: auto"
+              />
+              <div>
+                <h3 class="font-bold text-lg">Administración de Empresas</h3>
+                <p class="text-gray-500">Instituto Peruano de Negocios</p>
+              </div>
+            </div>
+            <div class="border-t pt-4">
+              <p class="text-sm text-gray-600">Expedición: 2025</p>
+              <div class="mt-2 flex gap-2">
+                <span
+                  class="badge px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm"
+                  >Marketing
+                </span>
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Administración y Organización</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Finanzas Empresariales</span
+                >
+                <span
+                  class="badge px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
+                  >Recursos Humanos</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Fin Cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- IMG Para Carrusel - JavaScript for carousel functionality -->
+    <script>
+      let currentSlide = 0;
+      const totalSlides = 5;
+      const track = document.querySelector(".flex.transition-transform");
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        updateDots();
+      }
+
+      function moveCarousel(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        updateCarousel();
+      }
+
+      function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateCarousel();
+      }
+
+      function updateDots() {
+        const dots = document.querySelectorAll(".w-2.h-2");
+        dots.forEach((dot, index) => {
+          dot.style.backgroundColor =
+            index === currentSlide
+              ? "rgba(255, 255, 255, 0.9)"
+              : "rgba(255, 255, 255, 0.6)";
+        });
+      }
+
+      // Optional: Auto-play
+      setInterval(() => moveCarousel(1), 5000);
+    </script>
+
+    <!-- Contactos -->
+    <section id="contacto" class="py-20 bg-gray-900 text-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-6 text-center">Contacto</h2>
+        <p class="text-center text-gray-300 mb-8">
+          ¿Listo para colaborar o aprender más sobre mi trabajo? ¡Contáctame
+          ahora!
+        </p>
+        <form class="max-w-lg mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-400 mb-2">Nombre</label>
+            <input
+              type="text"
+              id="name"
+              class="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring focus:ring-blue-500"
+              placeholder="Tu nombre"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-gray-400 mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring focus:ring-blue-500"
+              placeholder="Tu email"
+            />
+          </div>
+          <div class="mb-4">
+            <label for="message" class="block text-gray-400 mb-2"
+              >Mensaje</label
+            >
+            <textarea
+              id="message"
+              class="w-full p-3 rounded-lg bg-gray-700 text-white focus:ring focus:ring-blue-500"
+              placeholder="Escribe tu mensaje aquí..."
+              rows="5"
+            ></textarea>
+          </div>
+          <button type="submit" class="cyber-button text-lg w-full">
+            Enviar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- <br /><br /><br />
+    <h1></h1>
+    <br /><br /><br /> -->
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="wave-effect absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 animate-wave"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div class="space-y-4 group">
+            <h3
+              class="text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300"
+            >
+              MARCO MAYTA
+            </h3>
+            <p
+              class="text-gray-400 hover:text-gray-300 transition-colors duration-300"
+            >
+              Transformando datos en decisiones inteligentes para impulsar el
+              futuro de tu vida.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Enlaces Rápidos
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com.pe"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com.pe"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Portafolio
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Contacto
+            </h4>
+            <div class="space-y-2">
+              <p
+                class="text-gray-400 hover:text-gray-300 transition-colors duration-300 flex items-center gap-2"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                marfimaqui24@gmail.com
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Newsletter
+            </h4>
+            <form class="space-y-2">
+              <input
+                type="email"
+                placeholder="Tu email"
+                class="w-full px-4 py-2 bg-gray-800 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+              />
+              <button
+                class="w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:scale-105 transition-all duration-300"
+              >
+                Suscribirse
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 my-8"></div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+        >
+          <p class="text-gray-400">
+            © 2025 Marco Mayta. Todos los derechos reservados.
+          </p>
+
+          <div class="flex space-x-4">
+            <a
+              href="https://github.com/Maqui2404"
+              class="text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/marco-mayta-835781170/"
+              class="text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <style>
+      @keyframes wave {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+
+      .animate-wave {
+        animation: wave 8s linear infinite;
+      }
+    </style>
+
+    <style>
+      @keyframes gradient-xy {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .animate-gradient-xy {
+        animation: gradient-xy 15s ease infinite;
+        background-size: 400% 400%;
+      }
+    </style>
+
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      let isMenuOpen = false;
+
+      menuBtn.addEventListener("click", () => {
+        const nav = document.querySelector("nav div div");
+        if (!isMenuOpen) {
+          nav.classList.remove("hidden");
+          nav.classList.add(
+            "flex",
+            "flex-col",
+            "absolute",
+            "top-16",
+            "left-0",
+            "right-0",
+            "bg-white",
+            "p-4",
+            "space-y-4",
+            "shadow-lg"
+          );
+        } else {
+          nav.classList.add("hidden");
+          nav.classList.remove(
+            "flex",
+            "flex-col",
+            "absolute",
+            "top-16",
+            "left-0",
+            "right-0",
+            "bg-white",
+            "p-4",
+            "space-y-4",
+            "shadow-lg"
+          );
+        }
+        isMenuOpen = !isMenuOpen;
+      });
+
+      // Animaciones con GSAP
+      gsap.from(".hero-content", {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "power3.out",
+        stagger: 0.2,
+      });
+
+      // Animación de las tarjetas al hacer scroll
+      const cards = document.querySelectorAll(".card-hover");
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(entry.target, {
+              duration: 0.5,
+              y: 0,
+              opacity: 1,
+              ease: "power2.out",
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      cards.forEach((card) => {
+        gsap.set(card, {
+          y: 50,
+          opacity: 0,
+        });
+        observer.observe(card);
+      });
+
+      // Smooth scroll para los enlaces de navegación
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const href = this.getAttribute("href");
+          if (href !== "#") {
+            document.querySelector(href).scrollIntoView({
+              behavior: "smooth",
+            });
+            if (isMenuOpen) {
+              menuBtn.click();
+            }
+          }
+        });
+      });
+
+      // Animación del header al hacer scroll
+      let lastScroll = 0;
+      const header = document.querySelector("header");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll <= 0) {
+          header.classList.remove("shadow-lg");
+          return;
+        }
+
+        if (currentScroll > lastScroll) {
+          // Scrolling down
+          header.classList.add(
+            "-translate-y-full",
+            "transition",
+            "duration-300"
+          );
+        } else {
+          // Scrolling up
+          header.classList.remove("-translate-y-full");
+          header.classList.add("shadow-lg");
+        }
+
+        lastScroll = currentScroll;
+      });
+
+      // Efecto de parallax suave para la sección hero
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector("#inicio");
+        const heroContent = hero.querySelector(".animate-float");
+
+        heroContent.style.transform = `translateY(${scrolled * 0.1}px)`;
+      });
+    </script>
+
+    <!-- Hero -->
+    <script>
+      function createMatrixRain() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const container = document.getElementById("matrix-rain");
+
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+        container.appendChild(canvas);
+
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const drops = [];
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        for (let x = 0; x < columns; x++) {
+          drops[x] = 1;
+        }
+
+        function draw() {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#0F0";
+          ctx.font = fontSize + "px monospace";
+
+          for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+              drops[i] = 0;
+            drops[i]++;
+          }
+        }
+
+        setInterval(draw, 33);
+      }
+
+      // Tetris Animacion
+      class TetrisAnimation {
+        constructor() {
+          this.container = document.getElementById("tetris-container");
+          this.width = 10;
+          this.height = 20;
+          this.grid = [];
+          this.init();
+        }
+
+        init() {
+          // Create grid
+          for (let y = 0; y < this.height; y++) {
+            const row = [];
+            for (let x = 0; x < this.width; x++) {
+              const cell = document.createElement("div");
+              cell.className = "tetris-cell";
+              this.container.appendChild(cell);
+              row.push(cell);
+            }
+            this.grid.push(row);
+          }
+
+          this.animate();
+        }
+
+        animate() {
+          setInterval(() => {
+            // Add new piece at top
+            const piece = Math.floor(Math.random() * this.width);
+            if (this.grid[0][piece]) {
+              this.grid[0][piece].style.backgroundColor = `hsl(${
+                Math.random() * 360
+              }, 50%, 50%)`;
+            }
+
+            // Move pieces down
+            for (let y = this.height - 1; y > 0; y--) {
+              for (let x = 0; x < this.width; x++) {
+                if (this.grid[y - 1][x]) {
+                  this.grid[y][x].style.backgroundColor =
+                    this.grid[y - 1][x].style.backgroundColor;
+                }
+              }
+            }
+          }, 500);
+        }
+      }
+
+      // Símbolos estadísticos flotantes
+      function createStatsSymbols() {
+        const symbols = ["Σ", "μ", "σ", "π", "∫", "∑", "Δ", "∏"];
+        const container = document.getElementById("stats-symbols");
+
+        function createSymbol() {
+          const symbol = document.createElement("div");
+          symbol.className = "stats-symbol";
+          symbol.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+          symbol.style.left = Math.random() * 100 + "vw";
+          symbol.style.top = Math.random() * 100 + "vh";
+          symbol.style.opacity = 0;
+          container.appendChild(symbol);
+
+          gsap.to(symbol, {
+            duration: Math.random() * 3 + 2,
+            y: -100,
+            opacity: 1,
+            ease: "power1.out",
+            onComplete: () => {
+              symbol.remove();
+              createSymbol();
+            },
+          });
+        }
+
+        // Create initial symbols
+        for (let i = 0; i < 20; i++) {
+          setTimeout(createSymbol, i * 200);
+        }
+      }
+
+      // Gráfico estadístico animado
+      function createStatsChart() {
+        const svg = d3.select("#stats-chart");
+        const width = 400;
+        const height = 400;
+        const radius = Math.min(width, height) / 2;
+
+        const arc = d3
+          .arc()
+          .innerRadius(radius * 0.6)
+          .outerRadius(radius * 0.8);
+
+        const pie = d3
+          .pie()
+          .value((d) => d.value)
+          .sort(null);
+
+        const data = [
+          { name: "A", value: 30 },
+          { name: "B", value: 25 },
+          { name: "C", value: 20 },
+          { name: "D", value: 15 },
+          { name: "E", value: 10 },
+        ];
+
+        const g = svg
+          .append("g")
+          .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        const path = g
+          .selectAll("path")
+          .data(pie(data))
+          .enter()
+          .append("path")
+          .attr("d", arc)
+          .style("fill", (d, i) => d3.schemeCategory10[i]);
+
+        // Animate chart
+        path
+          .transition()
+          .duration(1000)
+          .attrTween("d", function (d) {
+            const interpolate = d3.interpolate(
+              { startAngle: 0, endAngle: 0 },
+              d
+            );
+            return function (t) {
+              return arc(interpolate(t));
+            };
+          });
+      }
+
+      // Inicialización
+      document.addEventListener("DOMContentLoaded", () => {
+        createMatrixRain();
+        new TetrisAnimation();
+        createStatsSymbols();
+        createStatsChart();
+
+        // Typing effect
+        const texts = [
+          "Estadístico",
+          "Informático",
+          "Investigador",
+          "Data Scientist",
+        ];
+        let currentText = 0;
+        const typingElement = document.querySelector(".typing-text");
+
+        function typeText() {
+          let text = texts[currentText];
+          let charIndex = 0;
+          typingElement.textContent = "";
+
+          function type() {
+            if (charIndex < text.length) {
+              typingElement.textContent += text.charAt(charIndex);
+              charIndex++;
+              setTimeout(type, 100);
+            } else {
+              setTimeout(erase, 2000);
+            }
+          }
+
+          function erase() {
+            if (typingElement.textContent.length > 0) {
+              typingElement.textContent = text.substring(
+                0,
+                typingElement.textContent.length - 1
+              );
+              setTimeout(erase, 50);
+            } else {
+              currentText = (currentText + 1) % texts.length;
+              setTimeout(typeText, 500);
+            }
+          }
+
+          type();
+        }
+
+        typeText();
+      });
+    </script>
+
+    <style>
+      /* Lluvia de Matriz */
+      .matrix-character {
+        color: #0f0;
+        font-family: "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      /* Tetris */
+      .tetris-cell {
+        width: 25px;
+        height: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+      }
+
+      /* Símbolos estadísticos flotantes */
+      .stats-symbol {
+        position: absolute;
+        font-size: 2rem;
+        color: rgba(59, 130, 246, 0.5);
+        pointer-events: none;
+        transition: all 0.5s;
+      }
+
+      .formula {
+        font-family: "Times New Roman", serif;
+        font-size: 1.2rem;
+        color: #3b82f6;
+        opacity: 0;
+        animation: fadeInOut 4s infinite;
+      }
+
+      /* Animaciones adicionales para elementos existentes */
+      .gradient-text {
+        animation: gradientFlow 3s infinite;
+      }
+
+      @keyframes gradientFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Mejorando la animación float existente */
+      .animate-float {
+        animation: float 6s ease-in-out infinite, glow 2s ease-in-out infinite;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
+        }
+        50% {
+          filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+        }
+      }
+    </style>
+
+    <script>
+      // Matrix Rain Effect
+      function initMatrixRain() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const container = document.getElementById("matrix-rain");
+
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+        container.appendChild(canvas);
+
+        const chars = "01アイウエオカキクケコサシスセソタチツテト";
+        const drops = [];
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
+        function draw() {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#0F0";
+          ctx.font = fontSize + "px monospace";
+
+          for (let i = 0; i < drops.length; i++) {
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+              drops[i] = 0;
+            drops[i]++;
+          }
+        }
+
+        setInterval(draw, 33);
+      }
+
+      // Tetris Animacion
+      class TetrisAnimation {
+        constructor() {
+          this.grid = Array(20)
+            .fill()
+            .map(() => Array(10).fill(null));
+          this.container = document.getElementById("tetris-container");
+          this.createGrid();
+          this.startAnimation();
+        }
+
+        createGrid() {
+          this.container.style.display = "grid";
+          this.container.style.gridTemplateColumns = "repeat(10, 1fr)";
+
+          for (let y = 0; y < 20; y++) {
+            for (let x = 0; x < 10; x++) {
+              const cell = document.createElement("div");
+              cell.className = "tetris-cell";
+              this.container.appendChild(cell);
+              this.grid[y][x] = cell;
+            }
+          }
+        }
+
+        startAnimation() {
+          setInterval(() => {
+            // Mover todo hacia abajo
+            for (let y = 18; y >= 0; y--) {
+              for (let x = 0; x < 10; x++) {
+                const currentColor = this.grid[y][x].style.backgroundColor;
+                this.grid[y + 1][x].style.backgroundColor = currentColor;
+              }
+            }
+
+            // Añadir nueva pieza arriba
+            if (Math.random() < 0.3) {
+              const x = Math.floor(Math.random() * 10);
+              const color = `hsl(${Math.random() * 360}, 70%, 50%)`;
+              this.grid[0][x].style.backgroundColor = color;
+            }
+          }, 500);
+        }
+      }
+
+      // Símbolos Estadísticos Flotantes
+      function createFloatingSymbols() {
+        const symbols = ["Σ", "μ", "σ", "π", "∫", "∑", "Δ", "∏", "ρ", "χ²"];
+        const container = document.getElementById("stats-symbols");
+
+        function createSymbol() {
+          const symbol = document.createElement("div");
+          symbol.className = "stats-symbol";
+          symbol.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+          symbol.style.left = `${Math.random() * 100}%`;
+          symbol.style.top = `${Math.random() * 100}%`;
+          container.appendChild(symbol);
+
+          const duration = 3000 + Math.random() * 2000;
+          const rotation = (Math.random() - 0.5) * 180;
+
+          symbol.animate(
+            [
+              { transform: `translate(0, 0) rotate(0deg)`, opacity: 0 },
+              {
+                transform: `translate(${
+                  Math.random() * 100 - 50
+                }px, -100px) rotate(${rotation}deg)`,
+                opacity: 1,
+              },
+              {
+                transform: `translate(${
+                  Math.random() * 100 - 50
+                }px, -200px) rotate(${rotation * 2}deg)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration: duration,
+              easing: "ease-out",
+            }
+          ).onfinish = () => {
+            symbol.remove();
+            createSymbol();
+          };
+        }
+
+        // Crear símbolos iniciales
+        for (let i = 0; i < 15; i++) {
+          setTimeout(createSymbol, i * 200);
+        }
+      }
+
+      // Inicializar todas las nuevas animaciones
+      document.addEventListener("DOMContentLoaded", () => {
+        initMatrixRain();
+        new TetrisAnimation();
+        createFloatingSymbols();
+      });
+    </script>
+
+    <!-- Heroo -->
+    <script>
+      // GSAP Animacion
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Navbar scroll animacion
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector(".heroo-nav");
+        if (window.scrollY > 50) {
+          nav.classList.add("scrolled");
+        } else {
+          nav.classList.remove("scrolled");
+        }
+      });
+
+      // Hero animacion
+      gsap.from(".hero-title", {
+        duration: 1,
+        y: 100,
+        opacity: 0,
+        ease: "power4.out",
+      });
+
+      gsap.from(".hero-subtitle", {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 0.3,
+      });
+
+      // Tech stack icons animacion
+      gsap.from(".tech-stack-icon", {
+        duration: 0.8,
+        scale: 0,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+        delay: 0.5,
+      });
+
+      // Particle animacion
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.innerHTML = ["⚡", "💡", "🔥", "✨"][
+          Math.floor(Math.random() * 4)
+        ];
+
+        const startX = Math.random() * window.innerWidth;
+        const startY = window.innerHeight + 100;
+
+        particle.style.left = `${startX}px`;
+        particle.style.top = `${startY}px`;
+        document.body.appendChild(particle);
+
+        gsap.to(particle, {
+          duration: Math.random() * 3 + 2,
+          y: -window.innerHeight - 100,
+          x: `random(-100, 100)`,
+          rotation: Math.random() * 360,
+          opacity: 1,
+          ease: "none",
+          onComplete: () => particle.remove(),
+        });
+      }
+
+      // Creando prartículas cada segundo
+      setInterval(createParticle, 1000);
+    </script>
+
+    <!-- MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM -->
+  </body>
+</html>

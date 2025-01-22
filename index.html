@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio - Data Scientist & Engineer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .gradient-text {
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .sphere-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: 0.3;
+      }
+
+      .btn-ver {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-ver::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background: currentColor;
+        transition: width 0.3s ease;
+      }
+
+      .btn-ver:hover::after {
+        width: 100%;
+      }
+
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #3b82f6;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .highlight-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .highlight-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(59, 130, 246, 0.1),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s;
+      }
+
+      .highlight-card:hover::before {
+        transform: translateX(100%);
+      }
+
+      .contact-input {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .contact-input:focus {
+        border-color: #3b82f6;
+        transform: translateY(-2px);
+      }
+
+      .achievements-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .achievements-card::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(59, 130, 246, 0.1) 50%,
+          transparent 100%
+        );
+        transform: skewX(-20deg) translateX(-100%);
+        transition: transform 0.6s;
+      }
+
+      .achievements-card:hover::after {
+        transform: skewX(-20deg) translateX(100%);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-30px);
+        }
+        60% {
+          transform: translateY(-15px);
+        }
+      }
+
+      .section-divider {
+        height: 6px;
+        background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        width: 200px;
+        margin: 2rem auto;
+        border-radius: 3px;
+      }
+
+      .area-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover .area-icon {
+        transform: scale(1.2) rotate(5deg);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Nav -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-lg z-50 shadow-sm">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <div class="text-2xl font-bold gradient-text">
+            <a href="#">Portafolio Marco Mayta</a>
+          </div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="nav-link transition-colors">Home</a>
+            <a href="#about" class="nav-link transition-colors">Sobre mí</a>
+            <a href="#highlights" class="nav-link transition-colors"
+              >Puedo hacer por ti</a
+            >
+            <a href="#areas" class="nav-link transition-colors">Áreas</a>
+            <a href="#achievements" class="nav-link transition-colors"
+              >Logros</a
+            >
+            <!-- <a href="#contact" class="nav-link transition-colors">Contacto</a> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen flex items-center justify-center relative overflow-hidden"
+      id="home"
+    >
+      <canvas class="sphere-canvas"></canvas>
+      <div class="container mx-auto px-6 py-24 text-center">
+        <h1
+          class="text-6xl md:text-7xl font-bold mb-6 opacity-0"
+          id="hero-title"
+        >
+          <span class="gradient-text">Data Science</span> &
+          <span class="gradient-text">AI Engineering</span>
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-600 mb-12 opacity-0"
+          id="hero-subtitle"
+        >
+          Transformando datos en decisiones inteligentes
+        </p>
+        <p
+          class="text-xl md:text-2xl text-gray-600 mb-12 typewriter-text"
+          id="hero-subtitle"
+        >
+          <span class="typing"></span>
+          <span class="cursor">|</span>
+        </p>
+
+        <style>
+          .typewriter-text {
+            opacity: 1 !important;
+          }
+
+          .typing {
+            position: relative;
+            color: #3a33ff;
+            font-weight: bold;
+            font-size: 2rem;
+          }
+
+          .cursor {
+            display: inline-block;
+            animation: blink 0.7s infinite;
+            color: #25569a;
+          }
+
+          @keyframes blink {
+            0%,
+            100% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0;
+            }
+          }
+        </style>
+
+        <script>
+          const text = "Marco Mayta";
+          const typingDelay = 150;
+          const erasingDelay = 100;
+          const newTextDelay = 2000;
+          let charIndex = 0;
+          let isDeleting = false;
+          let typingElement;
+
+          document.addEventListener("DOMContentLoaded", () => {
+            typingElement = document.querySelector(".typing");
+            typeWriter();
+          });
+
+          function typeWriter() {
+            if (!typingElement) return;
+
+            const currentText = text;
+            if (isDeleting) {
+              // Borrar texto
+              charIndex--;
+            } else {
+              // Escribir texto
+              charIndex++;
+            }
+
+            typingElement.textContent = currentText.substring(0, charIndex);
+
+            let typeSpeed = isDeleting ? erasingDelay : typingDelay;
+
+            if (!isDeleting && charIndex === currentText.length) {
+              // Termina de escribir, espera antes de borrar
+              typeSpeed = newTextDelay;
+              isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+              // Termina de borrar, comienza a escribir de nuevo
+              isDeleting = false;
+              typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+          }
+        </script>
+
+        <div class="flex justify-center space-x-4 opacity-0" id="hero-buttons">
+          <a
+            href="#contact"
+            class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-all hover:scale-105 transform"
+          >
+            Contactar
+          </a>
+          <a
+            href="#highlights"
+            class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition-all hover:scale-105 transform"
+          >
+            Ver más
+          </a>
+        </div>
+
+        <div class="mt-12 flex justify-center space-x-8">
+          <!-- GitHub -->
+          <a
+            href="https://github.com/Maqui2404"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+
+          <!-- LinkedIn -->
+          <a
+            href="https://linkedin.com/in/marco-mayta-835781170"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              />
+            </svg>
+          </a>
+
+          <!-- Kaggle -->
+          <a
+            href="https://kaggle.com/Marfi1"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg
+              class="w-8 h-8"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              />
+              <text
+                x="8.5"
+                y="16"
+                font-size="12"
+                fill="currentColor"
+                font-family="Arial, sans-serif"
+                font-weight="bold"
+              >
+                k
+              </text>
+            </svg>
+          </a>
+
+          <!-- ORCID -->
+          <a
+            href="https://orcid.org/0009-0009-6019-2925"
+            target="_blank"
+            class="text-gray-600 hover:text-[#A6CE39] transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#A6CE39" />
+              <text
+                x="7.5"
+                y="16"
+                font-size="10"
+                fill="white"
+                font-family="Arial, sans-serif"
+                font-weight="bold"
+              >
+                iD
+              </text>
+            </svg>
+          </a>
+
+          <!-- Deepnote -->
+          <!-- <a
+            href="#"
+            target="_blank"
+            class="text-gray-600 hover:text-blue-500 transform hover:scale-110 transition-all"
+          >
+            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#4A90E2" />
+              <path d="M8 12h4l4-4v8l-4-4H8z" fill="white" />
+            </svg>
+          </a> -->
+        </div>
+
+        <div class="pt-10" id="ver_todos_proyectos">
+          <a href="proyectos.html" class="modern-button">
+            <span class="button-content">Ver Todos los Proyectos</span>
+            <span class="button-particles"></span>
+          </a>
+        </div>
+
+        <style>
+          .modern-button {
+            position: relative;
+            display: inline-flex;
+            padding: 1rem 2.5rem;
+            font-weight: 500;
+            color: #fff;
+            background: linear-gradient(45deg, #0f172a, #1e293b);
+            border-radius: 9999px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            isolation: isolate;
+          }
+
+          .button-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .button-content::after {
+            content: "→";
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+          }
+
+          .modern-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #0c5ad7, #041e74);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+
+          .button-particles {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+          }
+
+          .modern-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+          }
+
+          .modern-button:hover::before {
+            opacity: 1;
+          }
+
+          .modern-button:hover .button-content::after {
+            opacity: 1;
+            transform: translateX(8px);
+          }
+
+          .modern-button:active {
+            transform: translateY(0);
+          }
+
+          @keyframes particle {
+            0% {
+              transform: translate(0) scale(1);
+              opacity: 0;
+            }
+            50% {
+              opacity: 1;
+            }
+            100% {
+              transform: translate(var(--tx), var(--ty)) scale(0);
+              opacity: 0;
+            }
+          }
+
+          .modern-button:hover .button-particles::before,
+          .modern-button:hover .button-particles::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            animation: particle 0.8s linear infinite;
+          }
+
+          .button-particles::before {
+            --tx: -20px;
+            --ty: -20px;
+          }
+
+          .button-particles::after {
+            --tx: 20px;
+            --ty: -15px;
+            animation-delay: 0.2s;
+          }
+        </style>
+      </div>
+
+      <div class="scroll-indicator">
+        <svg
+          class="w-6 h-6 text-blue-600 animate-bounce"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 14l-7 7m0 0l-7-7m7 7V3"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white relative">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">
+          Sobre Mí
+        </h2>
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg transform transition-all hover:scale-105"
+            data-tilt
+            data-tilt-max="5"
+          >
+            <div class="flex flex-col md:flex-row items-center gap-8">
+              <div class="w-48 h-48 rounded-full overflow-hidden shadow-lg">
+                <img
+                  src="me.jpeg"
+                  alt="Profile"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="flex-1">
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                  Mi nombre es Marco Mayta y soy egresado de la carrera de
+                  <b> Ingeniería Estadística e Informática</b> especializado en
+                  <b>Ciencia de Datos</b> e <b>Inteligencia Artificial</b>. He
+                  liderado proyectos innovadores y publicado artículos
+                  académicos.
+                </p>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                  Mi objetivo es transformar datos en decisiones inteligentes
+                  que impulsen el crecimiento innovador.
+                </p>
+                <div class="flex space-x-4">
+                  <a
+                    href="proyectos.html"
+                    class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+                  >
+                    Ver CV completo
+                    <svg
+                      class="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <!-- Lo que puedo hacer por ti -->
+    <section id="highlights" class="py-24 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">
+          Lo que puedo hacer por ti
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div
+            class="highlight-card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">📊📈🌀📤📋</div>
+            <h3 class="text-xl font-bold mb-4">
+              Análisis y Visualización de Datos Avanzados
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Ofrezco soluciones completas para el análisis y presentación de
+              datos mediante <b>dashboards</b> interactivos y gráficos
+              impactantes, utilizando herramientas líderes como Power BI,
+              Tableau, Python (Streamlit), y R (Shiny). Transformo datos
+              complejos en insights claros que facilitan la toma de
+              <b>decisiones estratégicas</b>.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver detalles
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <div
+            class="highlight-card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">🔍🧠💡🚀🤖</div>
+            <h3 class="text-xl font-bold mb-4">
+              Modelos Predictivos e Inteligencia Artificial
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Diseño e implemento modelos de predicción basados en
+              <b>estadística avanzada y machine learning</b>, incluyendo redes
+              neuronales, árboles de decisión y algoritmos SVM. Estas soluciones
+              están orientadas a optimizar procesos, prever tendencias y
+              <b>resolver problemas</b> específicos en
+              <b>distintos sectores</b>.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver detalles
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <div
+            class="highlight-card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">🧑‍💻🔒🌐📱🖥️</div>
+            <h3 class="text-xl font-bold mb-4">
+              Desarrollo de Aplicaciones y Sistemas Personalizados
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Desarrollo <b>aplicaciones web modernas</b> y funcionales
+              adaptadas a las necesidades de cada cliente, desde
+              <b>sistemas de gestión empresarial</b> hasta herramientas
+              <b>interactivas educativas</b> o estadísticas. Utilizo tecnologías
+              como Laravel, Vue.js y React para entregar
+              <b>soluciones</b> intuitivas y <b>escalables</b>.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver detalles
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <div
+            class="highlight-card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">🌍🏫📚🎓🧑‍🔬</div>
+            <h3 class="text-xl font-bold mb-4">
+              Consultoría en Investigación y Capacitación Técnica
+            </h3>
+            <p class="text-gray-600 mb-6">
+              Con mi experiencia como ayudante de cátedra brindo asesoramiento
+              especializado en proyectos académicos, redacción de
+              <b>artículos de investigación</b>, <b>tesis</b> y análisis
+              técnico. También he desarrollado <b>guías</b> e imparto
+              <b>talleres y capacitaciones</b> en herramientas de análisis de
+              datos, programación y desarrollo web, asegurando que los
+              participantes adquieran habilidades prácticas y aplicables.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver detalles
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Areas Section -->
+    <section id="areas" class="py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">
+          Áreas de Especialización
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Ciencia de Datos -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">📊</div>
+            <h3 class="text-xl font-bold mb-4">Ciencia de Datos</h3>
+            <p class="text-gray-600 mb-6">
+              Creación de dashboards interactivos, análisis predictivo, modelado
+              estadístico avanzado y validación de modelos para transformar
+              datos en decisiones estratégicas.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Informática -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">💻</div>
+            <h3 class="text-xl font-bold mb-4">Informática</h3>
+            <p class="text-gray-600 mb-6">
+              Desarrollo de aplicaciones web modernas, integración de sistemas,
+              creación de APIs personalizadas y soluciones tecnológicas
+              avanzadas para automatizar procesos.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Estadística -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">📈</div>
+            <h3 class="text-xl font-bold mb-4">Estadística</h3>
+            <p class="text-gray-600 mb-6">
+              Aplicación de pruebas de hipótesis, análisis de varianza (ANOVA),
+              simulaciones de distribuciones y desarrollo de modelos
+              estadísticos personalizados.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Análisis de Datos -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">📂</div>
+            <h3 class="text-xl font-bold mb-4">Análisis de Datos</h3>
+            <p class="text-gray-600 mb-6">
+              Preprocesamiento, limpieza y visualización avanzada de datos
+              mediante herramientas como Power BI y Python para soportar
+              decisiones críticas.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Inteligencia Artificial -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">🤖</div>
+            <h3 class="text-xl font-bold mb-4">Inteligencia Artificial</h3>
+            <p class="text-gray-600 mb-6">
+              Creación de redes neuronales, modelos de predicción y detección de
+              patrones utilizando algoritmos de última generación como YOLOv8 y
+              GridSearch.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Computación Cuántica -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">⚛️</div>
+            <h3 class="text-xl font-bold mb-4">Computación Cuántica</h3>
+            <p class="text-gray-600 mb-6">
+              Diseño de soluciones innovadoras con algoritmos cuánticos como
+              QAOA, combinando computación clásica y cuántica para problemas de
+              optimización.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Investigación -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">📚</div>
+            <h3 class="text-xl font-bold mb-4">Investigación</h3>
+            <p class="text-gray-600 mb-6">
+              Desarrollo de artículos académicos, diseño de experimentos y
+              exploración de nuevas áreas como inteligencia artificial y
+              estadística avanzada.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+          <!-- Educación -->
+          <div
+            class="card bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.05"
+          >
+            <div class="text-blue-600 text-4xl mb-4 area-icon">🎓</div>
+            <h3 class="text-xl font-bold mb-4">Educación</h3>
+            <p class="text-gray-600 mb-6">
+              Diseño de contenido educativo, talleres prácticos y desarrollo de
+              aplicaciones interactivas para fomentar el aprendizaje técnico.
+            </p>
+            <a
+              href="#"
+              class="btn-ver inline-flex items-center text-blue-600 hover:text-blue-700"
+            >
+              Ver proyectos
+              <svg
+                class="w-4 h-4 ml-2 transform transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <!-- Seccion de Logros -->
+    <section id="achievements" class="py-24 bg-gray-50 overflow-hidden">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center mb-4 gradient-text achievement-title"
+        >
+          Logros Destacados
+        </h2>
+        <div class="section-divider mb-16"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Publicaciones -->
+          <div
+            class="achievements-card group bg-white p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]"
+            data-tilt
+            data-tilt-scale="1.05"
+            data-tilt-max="10"
+          >
+            <div class="relative">
+              <div
+                class="text-blue-600 text-4xl mb-4 area-icon transform transition-transform group-hover:scale-110 group-hover:rotate-12"
+              >
+                📚
+              </div>
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-300 transform scale-0 group-hover:scale-100"
+              ></div>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Publicaciones</h3>
+            <ul class="space-y-4 relative achievement-list">
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="https://link.springer.com/chapter/10.1007/978-3-031-68660-3_6"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >How GPUs Kill Threads in Neural Network Training</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="https://doi.org/10.62161/revvisual.v16.5288"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Integración de Minería de Texto y Análisis de Redes
+                    Sociales Complejas para la Caracterización Cuantitativa de
+                    la Evolución Discursiva en Inteligencia Artificial a través
+                    de Plataformas de Streaming</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Proyectos -->
+          <div
+            class="achievements-card group bg-white p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]"
+            data-tilt
+            data-tilt-scale="1.05"
+            data-tilt-max="10"
+          >
+            <div class="relative">
+              <div
+                class="text-blue-600 text-4xl mb-4 area-icon transform transition-transform group-hover:scale-110 group-hover:rotate-12"
+              >
+                💻
+              </div>
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-300 transform scale-0 group-hover:scale-100"
+              ></div>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Proyectos</h3>
+            <ul class="space-y-4 relative achievement-list">
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="https://easytrainai-dhbkzau3hrkjxnfvval7sh.streamlit.app/"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Easy Train AI (Entrena tu IA sin saber programar)</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="https://chiresearcher-j8vhwqekdg5bcsqcj5q5vj.streamlit.app/"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10">Chi Researcher</span>
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10">T Researcher</span>
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Dashboard interactivo para jueces de paz (Laravel +
+                    Vue.js)</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Modelo de IA para diagnóstico médico basado en YOLOv8</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Reconocimientos -->
+          <div
+            class="achievements-card group bg-white p-8 rounded-2xl shadow-lg transform transition-all duration-300 hover:translate-y-[-10px]"
+            data-tilt
+            data-tilt-scale="1.05"
+            data-tilt-max="10"
+          >
+            <div class="relative">
+              <div
+                class="text-blue-600 text-4xl mb-4 area-icon transform transition-transform group-hover:scale-110 group-hover:rotate-12"
+              >
+                🏆
+              </div>
+              <div
+                class="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-full opacity-0 group-hover:opacity-20 transition-all duration-300 transform scale-0 group-hover:scale-100"
+              ></div>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800">
+              Reconocimientos
+            </h3>
+            <ul class="space-y-4 relative achievement-list">
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Ganador del Beca Permanencia 2023</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Ponente en Congresos Académicos</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+
+              <li class="achievement-item flex items-start space-x-2 opacity-0">
+                <span
+                  class="h-2 w-2 mt-2 rounded-full bg-blue-500 flex-shrink-0"
+                ></span>
+                <a
+                  href="#"
+                  class="text-gray-600 hover:text-blue-600 transition-colors relative group"
+                >
+                  <span class="relative z-10"
+                    >Primer Lugar en quinto y octavo ciclo</span
+                  >
+                  <span
+                    class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"
+                  ></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .section-divider {
+          height: 4px;
+          width: 100px;
+          background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+          margin: 0 auto;
+          border-radius: 2px;
+        }
+
+        .achievements-card {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .achievements-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            45deg,
+            transparent,
+            rgba(59, 130, 246, 0.05),
+            transparent
+          );
+          transform: translateX(-100%);
+          transition: transform 0.6s ease;
+        }
+
+        .achievements-card:hover::before {
+          transform: translateX(100%);
+        }
+
+        .achievement-item {
+          transition: all 0.5s ease;
+          transform: translateY(20px);
+        }
+      </style>
+
+      <script>
+        // Animate items on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Animate title
+              if (entry.target.classList.contains("achievement-title")) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+              }
+
+              // Animate list items
+              if (entry.target.classList.contains("achievement-list")) {
+                const items =
+                  entry.target.querySelectorAll(".achievement-item");
+                items.forEach((item, index) => {
+                  setTimeout(() => {
+                    item.style.opacity = "1";
+                    item.style.transform = "translateY(0)";
+                  }, index * 200);
+                });
+              }
+            }
+          });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelector(".achievement-title").style.opacity = "0";
+        document.querySelector(".achievement-title").style.transform =
+          "translateY(20px)";
+        observer.observe(document.querySelector(".achievement-title"));
+
+        document.querySelectorAll(".achievement-list").forEach((list) => {
+          observer.observe(list);
+        });
+
+        // Initialize Vanilla Tilt with custom settings
+        VanillaTilt.init(document.querySelectorAll(".achievements-card"), {
+          max: 5,
+          speed: 400,
+          glare: true,
+          "max-glare": 0.2,
+          gyroscope: true,
+        });
+      </script>
+    </section>
+
+    <!-- Contact Section -->
+    <!-- <section id="contact" class="py-24 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16 gradient-text">
+          Contacto
+        </h2>
+        <div class="max-w-2xl mx-auto">
+          <div
+            class="bg-white p-8 rounded-2xl shadow-lg"
+            data-tilt
+            data-tilt-scale="1.02"
+          >
+            <form class="space-y-6">
+              <div class="relative">
+                <label class="block text-gray-700 mb-2 font-medium" for="name"
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="contact-input w-full px-4 py-3 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  required
+                />
+              </div>
+              <div class="relative">
+                <label class="block text-gray-700 mb-2 font-medium" for="email"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="contact-input w-full px-4 py-3 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  required
+                />
+              </div>
+              <div class="relative">
+                <label
+                  class="block text-gray-700 mb-2 font-medium"
+                  for="message"
+                  >Mensaje</label
+                >
+                <textarea
+                  id="message"
+                  rows="4"
+                  class="contact-input w-full px-4 py-3 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-all hover:scale-105 transform focus:outline-none focus:ring-2 focus:ring-blue-200"
+              >
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <footer class="bg-gray-950 text-white relative overflow-hidden">
+      <!-- Efecto de onda animada en el fondo -->
+      <div class="absolute inset-0 opacity-10">
+        <div
+          class="wave-effect absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 animate-wave"
+        ></div>
+      </div>
+
+      <div class="container mx-auto px-6 py-12">
+        <!-- Grid principal -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <!-- Logo y descripción -->
+          <div class="space-y-4 group">
+            <h3
+              class="text-2xl font-bold group-hover:text-blue-400 transition-colors duration-300"
+            >
+              MARCO MAYTA
+            </h3>
+            <p
+              class="text-gray-400 hover:text-gray-300 transition-colors duration-300"
+            >
+              Transformando datos en decisiones inteligentes para impulsar el
+              futuro de tu vida.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Enlaces Rápidos
+            </h4>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Inicio
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com.pe"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Servicios
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com.pe"
+                  class="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 inline-block"
+                >
+                  Portafolio
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contacto -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Contacto
+            </h4>
+            <div class="space-y-2">
+              <p
+                class="text-gray-400 hover:text-gray-300 transition-colors duration-300 flex items-center gap-2"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                marfimaqui24@gmail.com
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold border-b border-gray-700 pb-2">
+              Newsletter
+            </h4>
+            <form class="space-y-2">
+              <input
+                type="email"
+                placeholder="marfimaqui24@gmail.com"
+                class="w-full px-4 py-2 bg-gray-800 rounded-lg focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+              />
+              <button
+                class="w-full px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transform hover:scale-105 transition-all duration-300"
+              >
+                Suscribirse
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-800 my-8"></div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+        >
+          <p class="text-gray-400">
+            © 2025 Marco Mayta. Todos los derechos reservados.
+          </p>
+
+          <div class="flex space-x-4">
+            <a
+              href="https://github.com/Maqui2404"
+              class="text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/marco-mayta-835781170/"
+              class="text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-all duration-300"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      @keyframes wave {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+
+      .animate-wave {
+        animation: wave 8s linear infinite;
+      }
+    </style>
+
+    <script>
+      // GSAP Animaciones
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero Animaciones
+      gsap.to("#hero-title", {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: 0.5,
+      });
+
+      gsap.to("#hero-subtitle", {
+        opacity: 1,
+        duration: 1,
+        delay: 0.8,
+      });
+
+      gsap.to("#hero-buttons", {
+        opacity: 1,
+        duration: 1,
+        delay: 1.1,
+      });
+
+      // Animaciones de Scroll para cards
+      const animateCards = (selector) => {
+        gsap.utils.toArray(selector).forEach((card, index) => {
+          gsap.from(card, {
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom-=100",
+              toggleActions: "play none none reverse",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: index * 0.2,
+          });
+        });
+      };
+
+      animateCards(".highlight-card");
+      animateCards(".card");
+      animateCards(".achievements-card");
+
+      // Initialize Vanilla Tilt
+      VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 5,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.2,
+      });
+
+      // Three.js Animación
+      const canvas = document.querySelector(".sphere-canvas");
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const geometry = new THREE.SphereGeometry(3, 32, 32);
+      const material = new THREE.MeshBasicMaterial({
+        color: 0x3b82f6,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.2,
+      });
+      const sphere = new THREE.Mesh(geometry, material);
+      scene.add(sphere);
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        sphere.rotation.x += 0.001;
+        sphere.rotation.y += 0.001;
+        renderer.render(scene, camera);
+      }
+
+      function resizeCanvas() {
+        const container = canvas.parentElement;
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+      animate();
+
+      // Desplazamiento suave para enlaces de navegación
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Animación de envio de formulario
+      const form = document.querySelector("form");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const button = this.querySelector('button[type="submit"]');
+        button.innerHTML = "Enviando...";
+        gsap.to(button, {
+          scale: 0.95,
+          duration: 0.2,
+          onComplete: () => {
+            setTimeout(() => {
+              button.innerHTML = "¡Mensaje Enviado!";
+              gsap.to(button, {
+                scale: 1,
+                duration: 0.2,
+                backgroundColor: "#10B981",
+              });
+            }, 1000);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
