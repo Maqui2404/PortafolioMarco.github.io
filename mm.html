@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyectos</title>
+    <!-- CDNs optimizados -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      /* Estilos base */
+      body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e6f2ff 50%, #f5f7fa 100%);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        overflow-x: hidden;
+      }
+      
+      /* Efecto para las tarjetas */
+      .project-card {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border-radius: 16px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        position: relative;
+        z-index: 10;
+      }
+      
+      .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      
+      /* Efecto para los botones */
+      .app-button {
+        background-image: linear-gradient(to right, var(--tw-gradient-stops));
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+      
+      .app-button::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.2);
+        transition: width 0.3s ease;
+        z-index: -1;
+      }
+      
+      .app-button:hover::after {
+        width: 100%;
+      }
+      
+      /* Efecto para las badges */
+      .tech-badge {
+        transition: all 0.3s ease;
+      }
+      
+      .tech-badge:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Animación del título */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .animate-fadeInUp {
+        animation: fadeInUp 0.8s ease forwards;
+      }
+      
+      /* Animación para los proyectos */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      
+      .animate-fadeIn {
+        animation: fadeIn 0.6s ease forwards;
+        opacity: 0;
+      }
+      
+      /* Decoración de fondo */
+      .bg-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 0;
+        opacity: 0.25;
+        transition: all 5s ease-in-out;
+      }
+      
+      /* Barra de navegación filtros */
+      .filter-btn {
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      
+      .filter-btn::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: currentColor;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+      
+      .filter-btn:hover::after,
+      .filter-btn.active::after {
+        width: 100%;
+      }
+      
+      /* Scrollbar personalizado */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #c5c5c5;
+        border-radius: 10px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a0a0a0;
+      }
+      
+      /* Animación para las tecnologías */
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      
+      .tech-badge {
+        animation: fadeInRight 0.5s ease forwards;
+        animation-delay: calc(var(--index) * 0.1s);
+        opacity: 0;
+      }
+      
+      /* Efecto de gradiente animado para bordes */
+      .gradient-border {
+        position: relative;
+        z-index: 0;
+        padding: 2px;
+        border-radius: 18px;
+        background: linear-gradient(90deg, #4f46e5, #06b6d4, #10b981, #8b5cf6, #4f46e5);
+        background-size: 300% 300%;
+        animation: gradientBorder 12s linear infinite;
+      }
+      
+      @keyframes gradientBorder {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      
+      /* Esquinas redondeadas más suaves */
+      .project-inner {
+        border-radius: 14px;
+        padding: 1.25rem;
+        background: white;
+        height: 100%;
+      }
+      
+      /* Efecto para iconos */
+      .icon-container {
+        transition: all 0.4s ease;
+      }
+      
+      .project-card:hover .icon-container {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <section class="py-20 min-h-screen relative overflow-hidden" id="proyectos">
+      <!-- Elementos decorativos de fondo -->
+      <div class="bg-blob w-96 h-96 bg-blue-200 top-20 left-10"></div>
+      <div class="bg-blob w-96 h-96 bg-purple-200 bottom-20 right-10"></div>
+      <div class="bg-blob w-80 h-80 bg-green-200 top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="bg-blob w-72 h-72 bg-yellow-200 bottom-1/3 right-1/4"></div>
+      
+      <div class="container mx-auto px-6 relative z-10">
+        <!-- Encabezado -->
+        <div class="text-center mb-16 animate-fadeInUp">
+          <h2 class="text-5xl font-bold text-gray-800 mb-4">PROYECTOS</h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6"></div>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+            Explorando la innovación a través de soluciones tecnológicas avanzadas
+          </p>
+        </div>
+        
+        <!-- Filtros de navegación -->
+        <div class="flex flex-wrap justify-center mb-12 gap-4 animate-fadeInUp" style="animation-delay: 0.2s;">
+          <button class="filter-btn px-4 py-2 text-blue-600 font-medium hover:text-blue-800 active" data-filter="all">
+            Todos los proyectos
+          </button>
+          <button class="filter-btn px-4 py-2 text-blue-600 font-medium hover:text-blue-800" data-filter="ai">
+            Inteligencia Artificial
+          </button>
+          <button class="filter-btn px-4 py-2 text-blue-600 font-medium hover:text-blue-800" data-filter="stats">
+            Estadística
+          </button>
+          <button class="filter-btn px-4 py-2 text-blue-600 font-medium hover:text-blue-800" data-filter="web">
+            Desarrollo Web
+          </button>
+          <button class="filter-btn px-4 py-2 text-blue-600 font-medium hover:text-blue-800" data-filter="data">
+            Análisis de Datos
+          </button>
+        </div>
+        
+        <!-- Contenedor de proyectos -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+          <!-- Los proyectos se cargarán dinámicamente desde JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Definición de proyectos
+        const projects = [
+          {
+            id: 1,
+            name: "Easy Train AI",
+            icon: "fa-brain",
+            category: "ai",
+            description: "Easy Train AI es una aplicación web interactiva diseñada para simplificar el entrenamiento de modelos de redes neuronales, utilizando cualquier tipo de datos.",
+            objectives: [
+              "Simplificar el desarrollo y evaluación de redes neuronales.",
+              "Democratizar el acceso a la inteligencia artificial.",
+              "Proporcionar una herramienta flexible y escalable."
+            ],
+            technologies: ["Python", "Streamlit", "TensorFlow y Keras", "Pandas y NumPy", "Matplotlib", "Joblib"],
+            time: "2 meses",
+            status: "Activo",
+            colorFrom: "purple-500",
+            colorTo: "indigo-600",
+            link: "https://easytrainai-dhbkzau3hrkjxnfvval7sh.streamlit.app/",
+            github: "#"
+          },
+          {
+            id: 2,
+            name: "Chi Researcher",
+            icon: "fa-chart-pie",
+            category: "stats",
+            description: "Chi Researcher es una aplicación web diseñada para realizar análisis estadísticos de Chi-Cuadrado de manera sencilla y accesible.",
+            objectives: [
+              "Simplificar la realización de pruebas de Chi-Cuadrado.",
+              "Facilitar el análisis estadístico a través de una interfaz intuitiva.",
+              "Generar gráficos y reportes detallados."
+            ],
+            technologies: ["Python", "Streamlit", "Pandas y NumPy", "SciPy", "Plotly Express"],
+            time: "2 meses",
+            status: "Activo",
+            colorFrom: "blue-500",
+            colorTo: "cyan-600",
+            link: "https://chiresearcher-j8vhwqekdg5bcsqcj5q5vj.streamlit.app/",
+            github: "#"
+          },
+          {
+            id: 3,
+            name: "T Researcher",
+            icon: "fa-flask",
+            category: "stats",
+            description: "T Researcher es una herramienta innovadora diseñada para simplificar el análisis estadístico mediante pruebas t de Student.",
+            objectives: [
+              "Facilitar la realización de pruebas t de Student en diferentes escenarios.",
+              "Simplificar la interpretación de resultados mediante gráficos interactivos.",
+              "Generar informes profesionales y detallados en formato PDF."
+            ],
+            technologies: ["Python", "Streamlit", "FPDF y BytesIO", "Pandas y NumPy", "SciPy", "Seaborn y Matplotlib"],
+            time: "2 meses",
+            status: "Activo",
+            colorFrom: "green-500",
+            colorTo: "emerald-600",
+            link: "https://tresearchgit-g4ma3ufu9qhkc83qlmndys.streamlit.app/",
+            github: "#"
+          },
+          {
+            id: 4,
+            name: "Jueces de Paz APP",
+            icon: "fa-gavel",
+            category: "web",
+            description: "Esta aplicación fue desarrollada para facilitar la gestión y recopilación de datos mensuales de los jueces de paz en la Corte Superior de Justicia del Poder Judicial de Puno.",
+            objectives: [
+              "Digitalizar y automatizar el proceso de llenado de datos mensuales.",
+              "Ofrecer un dashboard interactivo con estadísticas detalladas.",
+              "Facilitar la toma de decisiones mediante gráficos y reportes visuales."
+            ],
+            technologies: ["Laravel", "AdminLTE", "Tailwind CSS", "AOS y Font Awesome", "MySQL"],
+            time: "4 meses",
+            status: "Activo",
+            colorFrom: "amber-500",
+            colorTo: "orange-600",
+            link: "#",
+            contact: "marfimaqui24@gmail.com",
+            github: "#"
+          },
+          {
+            id: 5,
+            name: "YOLOv8 - Conteo de Personas",
+            icon: "fa-eye",
+            category: "ai",
+            description: "Esta aplicación utiliza YOLOv8 para realizar el conteo de personas en tiempo real mediante video en vivo.",
+            objectives: [
+              "Detectar y contar personas en tiempo real de manera precisa.",
+              "Evitar el conteo duplicado mediante seguimiento individual con ID único.",
+              "Ofrecer una experiencia interactiva con la opción de procesar video en vivo."
+            ],
+            technologies: ["Python", "YOLOv8", "OpenCV", "Streamlit", "Tracker"],
+            time: "4 meses",
+            status: "Activo",
+            colorFrom: "red-500",
+            colorTo: "pink-600",
+            link: "#",
+            contact: "marfimaqui24@gmail.com",
+            github: "#"
+          },
+          {
+            id: 6,
+            name: "Gestión de Expedientes",
+            icon: "fa-folder-open",
+            category: "web",
+            description: "Esta aplicación está diseñada para el seguimiento eficiente de expedientes, permitiendo a los usuarios filtrar y consultar información en una base de datos con más de un millón de registros.",
+            objectives: [
+              "Facilitar el seguimiento y consulta de expedientes mediante filtros avanzados.",
+              "Garantizar una respuesta rápida incluso con más de 2 millones de registros.",
+              "Proveer una interfaz intuitiva para usuarios administrativos."
+            ],
+            technologies: ["Python", "Flask", "HTML y CSS Tailwind", "JavaScript", "SQL Server y MySQL"],
+            time: "1 mes",
+            status: "Activo",
+            colorFrom: "violet-500",
+            colorTo: "purple-700",
+            link: "#",
+            contact: "marfimaqui24@gmail.com",
+            github: "#"
+          },
+          {
+            id: 7,
+            name: "Dashboards Power BI",
+            icon: "fa-chart-line",
+            category: "data",
+            description: "Este conjunto de proyectos en Power BI está diseñado para analizar y presentar datos de manera interactiva y dinámica, facilitando la toma de decisiones basada en información clave.",
+            objectives: [
+              "Ofrecer análisis visuales que simplifiquen la interpretación de datos complejos.",
+              "Proveer dashboards personalizados para diferentes necesidades y sectores.",
+              "Facilitar la toma de decisiones basada en datos mediante filtros avanzados y gráficos interactivos."
+            ],
+            technologies: ["Power BI", "DAX", "SQL", "Excel", "ETL"],
+            time: "1 mes",
+            status: "Activo",
+            colorFrom: "yellow-500",
+            colorTo: "amber-600",
+            link: "#",
+            contact: "marfimaqui24@gmail.com",
+            github: "#"
+          },
+          {
+            id: 8,
+            name: "EDMI",
+            icon: "fa-table",
+            category: "data",
+            description: "Explorador Interactivo de Técnicas de Imputación. Proporciona una plataforma intuitiva para comparar métodos de imputación y mejorar la calidad de los datos.",
+            objectives: [
+              "Comparar diferentes estrategias de imputación de manera visual e interactiva.",
+              "Facilitar la limpieza de datos mediante métodos como Media, Mediana, Moda, KNN, MICE y Regresión.",
+              "Proveer gráficos dinámicos que muestren el impacto de la imputación en la distribución de los datos."
+            ],
+            technologies: ["Python", "Streamlit", "Pandas", "Plotly", "Scikit-learn", "Missingno"],
+            time: "1 mes",
+            status: "Activo",
+            colorFrom: "teal-500",
+            colorTo: "cyan-600",
+            link: "https://edmi0005znsgplavkd2dr6erfkxzz.streamlit.app/",
+            github: "#"
+          },
+          {
+            id: 9,
+            name: "ML Spam Detector",
+            icon: "fa-envelope-open-text",
+            category: "ai",
+            description: "Aplicación que utiliza Machine Learning para clasificar mensajes de texto como spam o no spam (ham).",
+            objectives: [
+              "Clasificar mensajes de texto como spam o ham.",
+              "Proporcionar una herramienta interactiva para el análisis de texto.",
+              "Demostrar la aplicación de Machine Learning en problemas de clasificación."
+            ],
+            technologies: ["Python", "Streamlit", "Scikit-learn", "Pandas", "Plotly", "NLTK"],
+            time: "1 mes",
+            status: "Activo",
+            colorFrom: "indigo-500",
+            colorTo: "blue-600",
+            link: "https://mlspamdetector-eauvbjsv4ampzjd77umgzb.streamlit.app/",
+            github: "#"
+          }
+        ];
+        
+        // Función para renderizar proyectos
+        function renderProjects(filter = 'all') {
+          const container = document.getElementById('projects-container');
+          container.innerHTML = ''; // Limpiar contenedor
+          
+          projects.forEach((project, index) => {
+            // Filtrar proyectos
+            if (filter !== 'all' && project.category !== filter) return;
+            
+            // Crear elemento de proyecto
+            const projectElement = document.createElement('div');
+            projectElement.className = `project-card animate-fadeIn`;
+            projectElement.style.animationDelay = `${0.1 + (index % 3) * 0.1}s`;
+            
+            // Determinar si debe mostrar enlace o contacto
+            const actionButton = project.link && project.link !== "#" 
+              ? `<a href="${project.link}" target="_blank" class="app-button bg-gradient-to-r from-${project.colorFrom} to-${project.colorTo} text-white py-3 px-6 rounded-lg text-center font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                   Ir a la Aplicación
+                   <i class="fas fa-arrow-right"></i>
+                 </a>`
+              : `<a href="mailto:${project.contact}" class="app-button bg-gradient-to-r from-${project.colorFrom} to-${project.colorTo} text-white py-3 px-6 rounded-lg text-center font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                   Contactar
+                   <i class="fas fa-envelope"></i>
+                 </a>`;
+            
+            // Generar badges de tecnologías con animación escalonada
+            let techBadges = '';
+            project.technologies.forEach((tech, i) => {
+              techBadges += `<span class="tech-badge px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium hover:bg-gray-200" style="--index: ${i};">${tech}</span>`;
+            });
+            
+            // Generar lista de objetivos
+            let objectives = '';
+            project.objectives.forEach(obj => {
+              objectives += `<li class="flex items-start mb-2"><span class="text-${project.colorFrom} mr-2">•</span> ${obj}</li>`;
+            });
+            
+            // HTML completo del proyecto
+            projectElement.innerHTML = `
+              <div class="gradient-border">
+                <div class="project-inner">
+                  <div class="flex items-center gap-4 mb-6">
+                    <div class="icon-container h-16 w-16 bg-gradient-to-br from-${project.colorFrom} to-${project.colorTo} rounded-xl flex items-center justify-center transform transition-transform hover:scale-110">
+                      <i class="fa-solid ${project.icon} text-white text-2xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="text-2xl font-bold">${project.name}</h3>
+                      <div class="w-12 h-1 bg-gradient-to-r from-${project.colorFrom} to-${project.colorTo} mt-2"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="space-y-5">
+                    <div>
+                      <h4 class="font-semibold text-lg mb-2 flex items-center">
+                        <i class="fas fa-info-circle mr-2 text-${project.colorFrom}"></i>
+                        Descripción
+                      </h4>
+                      <p class="text-gray-600">${project.description}</p>
+                    </div>
+                    
+                    <div>
+                      <h4 class="font-semibold text-lg mb-2 flex items-center">
+                        <i class="fas fa-bullseye mr-2 text-${project.colorFrom}"></i>
+                        Objetivos
+                      </h4>
+                      <ul class="text-gray-600">
+                        ${objectives}
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 class="font-semibold text-lg mb-2 flex items-center">
+                        <i class="fas fa-code mr-2 text-${project.colorFrom}"></i>
+                        Tecnologías
+                      </h4>
+                      <div class="flex flex-wrap gap-2">
+                        ${techBadges}
+                      </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Tiempo</p>
+                        <p class="font-bold text-lg flex items-center">
+                          <i class="fas fa-clock mr-2 text-${project.colorFrom}"></i>
+                          ${project.time}
+                        </p>
+                      </div>
+                      <div class="bg-gray-50 p-4 rounded-lg">
+                        <p class="text-sm text-gray-500">Estado</p>
+                        <p class="font-bold text-lg text-green-600 flex items-center">
+                          <i class="fas fa-check-circle mr-2"></i>
+                          ${project.status}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 pt-4">
+                      <a href="${project.github}" class="flex items-center justify-center text-gray-700 hover:text-${project.colorFrom} p-3 border border-gray-200 rounded-lg hover:border-${project.colorFrom} transition-all">
+                        <i class="fab fa-github text-xl mr-2"></i>
+                        Repositorio GitHub
+                      </a>
+                      ${actionButton}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+            
+            container.appendChild(projectElement);
+          });
+          
+          // Si no hay proyectos para mostrar
+          if (container.children.length === 0) {
+            const noProjects = document.createElement('div');
+            noProjects.className = "col-span-full text-center py-20";
+            noProjects.innerHTML = `
+              <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+              <h3 class="text-xl text-gray-600">No se encontraron proyectos en esta categoría</h3>
+            `;
+            container.appendChild(noProjects);
+          }
+        }
+        
+        // Inicializar proyectos
+        renderProjects();
+        
+        // Configurar filtros
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(b => b.classList.remove('active'));
+            // Añadir clase active al botón actual
+            this.classList.add('active');
+            // Filtrar proyectos
+            renderProjects(this.dataset.filter);
+          });
+        });
+        
+        // Animación de los blobs
+        function animateBlobs() {
+          const blobs = document.querySelectorAll('.bg-blob');
+          blobs.forEach((blob, index) => {
+            // Posición inicial
+            const startX = parseInt(window.getComputedStyle(blob).left || '0');
+            const startY = parseInt(window.getComputedStyle(blob).top || '0');
+            
+            // Animación con GSAP
+            gsap.to(blob, {
+              x: `${Math.sin(Date.now() / 3000 + index) * 100}px`,
+              y: `${Math.cos(Date.now() / 2500 + index) * 100}px`,
+              duration: 8,
+              ease: "sine.inOut",
+              repeat: -1,
+              yoyo: true
+            });
+          });
+        }
+        
+        // Iniciar animación de blobs
+        animateBlobs();
+        
+        // Detectar scroll para animar tarjetas cuando son visibles
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = 1;
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, {
+          threshold: 0.1
+        });
+        
+        // Observar las tarjetas para animación en scroll
+        setTimeout(() => {
+          document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+          });
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
